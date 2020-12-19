@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class OrderedItems
+ * Servlet implementation class Countries
  */
-@WebServlet("/OrderedItems")
-public class OrderedItems extends HttpServlet {
+@WebServlet("/Countries")
+public class Countries extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OrderedItems() {
+    public Countries() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,8 +26,15 @@ public class OrderedItems extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		NavManager navManager = new NavManager();
+		FooterManager footerManager = new FooterManager();
+		
+		response.setContentType("text/html");
+		response.getWriter().append(
+				navManager.getNavbarHTML(request) + 
+				"This is Countries" +
+				footerManager.getFooterHTML()
+		);
 	}
 
 	/**
