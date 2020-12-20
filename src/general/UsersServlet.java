@@ -1,6 +1,8 @@
 package general;
 
 import java.io.IOException;
+import java.sql.Connection;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,6 +30,13 @@ public class UsersServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		NavManager navManager = new NavManager();
 		FooterManager footerManager = new FooterManager();
+		
+		try {
+			new DBConnection().connect();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		response.setContentType("text/html");
 		response.getWriter().append(
