@@ -1,12 +1,16 @@
 package general;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import services.UserService;
 
 /**
  * Servlet implementation class UsersServlet
@@ -29,6 +33,19 @@ public class UsersServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		NavManager navManager = new NavManager();
 		FooterManager footerManager = new FooterManager();
+		UserService userService = new UserService();
+		
+		ResultSet rs = userService.getAllUsers();
+		
+		try {
+			while(rs.next()) {
+				 System.out.println("name = " + rs.getString("name"));
+			     System.out.println("id = " + rs.getInt("user_id"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		response.setContentType("text/html");
 		response.getWriter().append(

@@ -29,6 +29,8 @@ public class DBConnection {
 //	           System.out.println("name = " + rs.getString("name"));
 //	           System.out.println("id = " + rs.getInt("id"));
 //	        }
+			
+			
 		} catch(Exception e) { 
 			System.out.println(e);
 		}
