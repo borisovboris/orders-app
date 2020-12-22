@@ -3,6 +3,7 @@ package general;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,19 +11,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Country;
 import services.CountryService;
 
 /**
  * Servlet implementation class Countries
  */
 @WebServlet("/Countries")
-public class Countries extends HttpServlet {
+public class CountriesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public Countries() {
+	public CountriesServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -37,17 +39,11 @@ public class Countries extends HttpServlet {
 		FooterManager footerManager = new FooterManager();
 		CountryService countryService = new CountryService();
 
-		ResultSet rs = countryService.getCountries();
+		List<Country> countryList = countryService.getCountries();
 
-		try {
-			while (rs.next()) {
-				System.out.println("name = " + rs.getString("name"));
-				System.out.println("id = " + rs.getInt("country_code"));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		for (Country country : countryList) {
+            System.out.println(country.getName());
+        }
 
 		response.setContentType("text/html");
 		response.getWriter()
