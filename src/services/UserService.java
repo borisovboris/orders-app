@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import general.DBConnection;
+import utilities.DBConnection;
 
 public class UserService {
 	Connection connection = null;

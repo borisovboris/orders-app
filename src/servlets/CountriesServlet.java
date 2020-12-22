@@ -1,4 +1,4 @@
-package general;
+package servlets;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import models.Country;
 import services.CountryService;
+import utilities.PageManager;
 
 /**
  * Servlet implementation class Countries
@@ -35,6 +36,8 @@ public class CountriesServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		PageManager pageManager = new PageManager();
+		
 		String tableHead = "<tr>\r\n"
 				+ "        <th>Country Code</th>\r\n"
 				+ "        <th>Name</th>\r\n"
@@ -42,9 +45,7 @@ public class CountriesServlet extends HttpServlet {
 				+ "    </tr>";
 		String dataRows = "";
 		
-		NavManager navManager = new NavManager();
-		FooterManager footerManager = new FooterManager();
-		CountryService countryService = new CountryService();
+		CountryService countryService = new CountryService(); // service for manipulation of the database
 
 		List<Country> countryList = countryService.getCountries();
 		
@@ -65,7 +66,7 @@ public class CountriesServlet extends HttpServlet {
 		
 		response.setContentType("text/html");
 		response.getWriter()
-				.append(navManager.getNavbarHTML(request) + table + footerManager.getFooterHTML());
+				.append(pageManager.getHTMLDocument(table, request));
 	}
 
 	/**

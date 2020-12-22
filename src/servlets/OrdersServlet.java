@@ -1,28 +1,26 @@
-package general;
+package servlets;
 
 import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import services.UserService;
+import utilities.FooterManager;
+import utilities.NavManager;
 
 /**
- * Servlet implementation class UsersServlet
+ * Servlet implementation class OrdersServlet
  */
-@WebServlet("/Users")
-public class UsersServlet extends HttpServlet {
+@WebServlet("/Orders")
+public class OrdersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UsersServlet() {
+    public OrdersServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,7 +35,7 @@ public class UsersServlet extends HttpServlet {
 		response.setContentType("text/html");
 		response.getWriter().append(
 				navManager.getNavbarHTML(request) + 
-				"This is Users" +
+				"This is Orders" +
 				footerManager.getFooterHTML()
 		);
 	}

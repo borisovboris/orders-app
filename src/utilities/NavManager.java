@@ -1,4 +1,4 @@
-package general;
+package utilities;
 
 import javax.servlet.http.HttpServletRequest;
 

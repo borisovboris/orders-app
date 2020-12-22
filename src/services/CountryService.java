@@ -7,8 +7,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import general.DBConnection;
 import models.Country;
+import utilities.DBConnection;
 
 public class CountryService {
 	 Connection connection = null;

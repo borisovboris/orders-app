@@ -1,4 +1,4 @@
-package general;
+package utilities;
 
 public class FooterManager {
 	
