@@ -13,6 +13,8 @@ public class Country {
 		return _countryCode;
 	}
 	
+	/* ----------------------------------------------------------------------- */
+	
 	public void setName(String name) {
 		_name = name;
 	}
@@ -21,11 +23,13 @@ public class Country {
 		return _name;
 	}
 	
+	/* ----------------------------------------------------------------------- */
+	
 	public void setContinentName(String continentName) {
 		_continentName = continentName;
 	}
 	
-	public String geContinentName() {
+	public String getContinentName() {
 		return _continentName;
 	}
 }

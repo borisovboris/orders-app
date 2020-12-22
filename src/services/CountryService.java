@@ -14,7 +14,7 @@ public class CountryService {
 	 Connection connection = null;
 	 Statement statement = null;
 	 ResultSet rs = null;
-	 List<Country> countries=new ArrayList<Country>();
+	 List<Country> countries = new ArrayList<Country>();
 	
 	public CountryService() {
 		try {
@@ -32,6 +32,8 @@ public class CountryService {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.print("error constructor");
+		} finally {
+			cleanUp();
 		}
 	}
 	
@@ -54,10 +56,31 @@ public class CountryService {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} 
+		} finally {
+			cleanUp();
+		}
 		
 		return countries;
 		
+	}
+	
+	
+	public void cleanUp() {
+
+		try {
+			if(connection != null) {
+				connection.close();
+			}
+			if(statement != null) {
+				statement.close();
+			}
+			if(rs != null) {
+				rs.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 	}
 	
 	
