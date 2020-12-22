@@ -35,19 +35,37 @@ public class CountriesServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String tableHead = "<tr>\r\n"
+				+ "        <th>Country Code</th>\r\n"
+				+ "        <th>Name</th>\r\n"
+				+ "        <th>Continent Name</th>\r\n"
+				+ "    </tr>";
+		String dataRows = "";
+		
 		NavManager navManager = new NavManager();
 		FooterManager footerManager = new FooterManager();
 		CountryService countryService = new CountryService();
 
 		List<Country> countryList = countryService.getCountries();
+		
 
 		for (Country country : countryList) {
-            System.out.println(country.getName());
+            String dataRow = "<tr>\r\n"
+            		+ "        <td>" + country.getCountryCode() +"</td>\r\n"
+            		+ "        <td>" + country.getName() +"</td>\r\n"
+            		+ "        <td>" + country.getContinentName() +"</td>\r\n"
+            		+ "    </tr>";
+            
+            dataRows += dataRow;
         }
-
+		
+		String table = ("<table id=\"data-table\">" + tableHead + dataRows +
+		"</table>");
+		
+		
 		response.setContentType("text/html");
 		response.getWriter()
-				.append(navManager.getNavbarHTML(request) + "This is Countries" + footerManager.getFooterHTML());
+				.append(navManager.getNavbarHTML(request) + table + footerManager.getFooterHTML());
 	}
 
 	/**
