@@ -4,69 +4,99 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
+import models.Country;
+import models.User;
 import utilities.DBConnection;
 
 public class UserService {
+	
 	Connection connection = null;
 	Statement statement = null;
 	ResultSet rs = null;
+	List<User> users = new ArrayList<User>();
 
-	void constructor() {
+	public UserService() {
+
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
-			statement.executeUpdate("drop table if exists USER");
-//			statement.executeUpdate("CREATE TABLE IF NOT EXISTS USER" + "(" + "USER_ID INT NOT NULL AUTO_INCREMENT,"
-//					+ "NAME VARCHAR(20)," + "EMAIL VARCHAR (20)," + "GENDER VARCHAR (20),"
-//					+ "DATE_OF_BIRTH VARCHAR(20)," + "COUNTRY_CODE INT" + "CREATED_AT VARCHAR (20)"
-//					+ "PRIMARY KEY(USER_ID)" + "FOREIGN KEY(COUNTRY_CODE) REFERENCES COUNTRY(COUNTRY_ID)" + ")");
-//
-//			statement.executeUpdate(
-//					"INSERT INTO USER (NAME, EMAIL, GENDER, DATE_OF_BIRTH, COUNTRY_CODE, CREATED_AT) VALUES"
-//							+ "('Ivan Petkov', 'ivan@gmail.com', 'Male', '18.11.1999', 359, '12.10.2010'),"
-//							+ "('Emil Cholakov', 'emil@abv.bg', 'Male', '04.06.1988', 7, '09.08.2000')"
-//							+ "('Veska Popova', 'veska@gmail.com', 'Female', '10.09.1995', 1, '06.10.2005'),"
-//							+ "('Atanas Mihailov', 'atanas@gmail.com', 'Male', '12.12.1980', 44, '10.07.2001');");
+			statement.executeUpdate("create table if not exists user (" 
+					+ "id INTEGER PRIMARY KEY autoincrement," 
+					+ "name string not null,"
+					+ "email string not null," 
+					+ "gender string not null,"
+					+ "dob string not null,"
+					+ "country_code int not null,"
+					+ "created_at string not null"
+					+ ");"
+			);
+
+			rs = statement.executeQuery("SELECT COUNT(*) AS rowcount FROM user");
+			if (rs.getInt("rowcount") == 0) {
+				System.out.print("HEREEEEEEEEE");
+				statement.executeUpdate(
+				"insert into user (name, email, gender, dob, country_code, created_at) values"
+				+ "('Ivan Petkov', 'ivan@gmail.com', 'Male', '18.11.1999', 359, '12.10.2010'),"
+				+ "('Emil Cholakov', 'emil@abv.bg', 'Male', '04.06.1988', 7, '09.08.2000'),"
+				+ "('Veska Popova', 'veska@gmail.com', 'Female', '10.09.1995', 1, '06.10.2005'),"
+				+ "('Atanas Mihailov', 'atanas@gmail.com', 'Male', '12.12.1980', 44, '10.07.2001');");	
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.print("error constructor");
 		} finally {
 			cleanUp();
-			System.out.print("Inserted");
 		}
 	}
 
-
-	public ResultSet getAllUsers() {
+	public List<User> getUsers() {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
-			rs = statement.executeQuery("SELECT * FROM USER");
+			rs = statement.executeQuery("select * from user");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			System.out.print("error getUsers");
+		}
+
+		try {
+			while (rs.next()) {
+				User user = new User();
+				user.setName(rs.getString("name"));
+				user.setEmail(rs.getString("email"));
+				user.setGender(rs.getString("gender"));
+				user.setDateOfBirth(rs.getString("dob"));
+				user.setCountryCode(rs.getInt("country_code"));
+				user.setCreatedAt(rs.getString("created_at"));
+				
+				users.add(user);
+			}
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			cleanUp();
 		}
-		return rs;
-		
+
+		return users;
+
 	}
-	
+
 	public void cleanUp() {
 
 		try {
-			if(connection != null) {
+			if (connection != null) {
 				connection.close();
 			}
-			if(statement != null) {
+			if (statement != null) {
 				statement.close();
 			}
-			if(rs != null) {
+			if (rs != null) {
 				rs.close();
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

@@ -2,7 +2,7 @@ package models;
 
 public class User {
 	private int _id;
-	private String _fullName;
+	private String _name;
 	private String _email; 
 	private String _gender;
 	private String _dateOfBirth;
@@ -19,12 +19,12 @@ public class User {
 	
 	/* ----------------------------------------------------------------------- */
 	
-	public void setFullName(String fullName) {
-		_fullName = fullName;
+	public void setName(String name) {
+		_name = name;
 	}
 	
-	public String getFullName() {
-		return _fullName;
+	public String getName() {
+		return _name;
 	}
 	
 	/* ----------------------------------------------------------------------- */
