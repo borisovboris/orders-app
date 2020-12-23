@@ -28,3 +28,7 @@
 #data-table button:hover {
         cursor: pointer;
 }
+
+#data-table a {
+	text-decoration: none;
+}

@@ -41,11 +41,11 @@ public class CountriesServlet extends HttpServlet {
 		if(toDelete != null) {
 			if(toDelete.equals("1") && countryCode != null) {
 				deleteCountry(countryCode, response);
+				return;
 			}
 		}
 		
-		System.out.print("rest of code");
-		
+		String createButton = "<a href=\"views/createCountry\">Create</a>";
 		String tableHead = "<tr>\r\n"
 				+ "        <th>Country Code</th>\r\n"
 				+ "        <th>Name</th>\r\n"
@@ -53,19 +53,19 @@ public class CountriesServlet extends HttpServlet {
 				+ "        <th>Action</th>\r\n"
 				+ "    </tr>";
 		String dataRows = "";
-		List<Country> countryList = countryService.getCountries();
-		System.out.print(countryList.size());
 		
-
+		List<Country> countryList = countryService.getCountries();
 		for (Country country : countryList) {
             String dataRow = "<tr>\r\n"
             		+ "<td>" + country.getCountryCode() +"</td>\r\n"
             		+ "<td>" + country.getName() +"</td>\r\n"
             		+ "<td>" + country.getContinentName() +"</td>\r\n"
             		+ "<td>"
+            		+ "<button>"
             		+ "       <a href=\"http://localhost:8080/orders-app/Countries?delete=1&country_code=" + country.getCountryCode() +"\">"
             		+ "              Delete"
             		+ "       </a>"
+            		+ "</button>"
             		+ "</td>"
             		+ "</tr>";
             
@@ -75,10 +75,11 @@ public class CountriesServlet extends HttpServlet {
 		String table = ("<table id=\"data-table\">" + tableHead + dataRows +
 		"</table>");
 		
+		String content = createButton + table;
 		
 		response.setContentType("text/html");
 		response.getWriter()
-				.append(pageManager.getHTMLDocument(table, request));
+				.append(pageManager.getHTMLDocument(content, request));
 	}
 
 	/**
