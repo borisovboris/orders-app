@@ -24,3 +24,7 @@
 	background-color: #3682ff;
 	color: white;
 }   
+
+#data-table button:hover {
+        cursor: pointer;
+}

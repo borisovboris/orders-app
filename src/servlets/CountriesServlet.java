@@ -25,7 +25,6 @@ public class CountriesServlet extends HttpServlet {
 	 */
 	public CountriesServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -34,26 +33,41 @@ public class CountriesServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String toDelete = request.getParameter("delete");
+		String countryCode = request.getParameter("country_code");
+		CountryService countryService = new CountryService();
 		PageManager pageManager = new PageManager();
+		
+		if(toDelete != null) {
+			if(toDelete.equals("1") && countryCode != null) {
+				deleteCountry(countryCode, response);
+			}
+		}
+		
+		System.out.print("rest of code");
 		
 		String tableHead = "<tr>\r\n"
 				+ "        <th>Country Code</th>\r\n"
 				+ "        <th>Name</th>\r\n"
 				+ "        <th>Continent Name</th>\r\n"
+				+ "        <th>Action</th>\r\n"
 				+ "    </tr>";
 		String dataRows = "";
-		
-		CountryService countryService = new CountryService(); // service for manipulation of the database
-
 		List<Country> countryList = countryService.getCountries();
+		System.out.print(countryList.size());
 		
 
 		for (Country country : countryList) {
             String dataRow = "<tr>\r\n"
-            		+ "        <td>" + country.getCountryCode() +"</td>\r\n"
-            		+ "        <td>" + country.getName() +"</td>\r\n"
-            		+ "        <td>" + country.getContinentName() +"</td>\r\n"
-            		+ "    </tr>";
+            		+ "<td>" + country.getCountryCode() +"</td>\r\n"
+            		+ "<td>" + country.getName() +"</td>\r\n"
+            		+ "<td>" + country.getContinentName() +"</td>\r\n"
+            		+ "<td>"
+            		+ "       <a href=\"http://localhost:8080/orders-app/Countries?delete=1&country_code=" + country.getCountryCode() +"\">"
+            		+ "              Delete"
+            		+ "       </a>"
+            		+ "</td>"
+            		+ "</tr>";
             
             dataRows += dataRow;
         }
@@ -75,6 +89,13 @@ public class CountriesServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+	}
+	
+	//  http://www.site.com?param1=1&param2=2
+	
+	protected void deleteCountry(String countryCode, HttpServletResponse response) {
+		CountryService countryService = new CountryService();
+		countryService.deleteCountry(countryCode, response);
 	}
 
 }

@@ -36,7 +36,6 @@ public class UserService {
 
 			rs = statement.executeQuery("SELECT COUNT(*) AS rowcount FROM user");
 			if (rs.getInt("rowcount") == 0) {
-				System.out.print("HEREEEEEEEEE");
 				statement.executeUpdate(
 				"insert into user (name, email, gender, dob, country_code, created_at) values"
 				+ "('Ivan Petkov', 'ivan@gmail.com', 'Male', '18.11.1999', 359, '12.10.2010'),"
