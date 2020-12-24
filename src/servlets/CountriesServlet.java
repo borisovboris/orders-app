@@ -3,6 +3,7 @@ package servlets;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,6 +35,7 @@ public class CountriesServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String toDelete = request.getParameter("delete");
+		String toEdit = request.getParameter("edit");
 		String countryCode = request.getParameter("country_code");
 		CountryService countryService = new CountryService();
 		PageManager pageManager = new PageManager();
@@ -41,6 +43,20 @@ public class CountriesServlet extends HttpServlet {
 		if(toDelete != null) {
 			if(toDelete.equals("1") && countryCode != null) {
 				deleteCountry(countryCode, response);
+				return;
+			}
+		}
+		
+		if(toEdit != null) {
+			if(toEdit.equals("1") && countryCode != null) {
+				String message = "Example source code of Servlet to JSP communication.";
+			    request.setAttribute("message", message);
+
+			    //Servlet JSP communication
+			    RequestDispatcher reqDispatcher = getServletConfig().getServletContext().getRequestDispatcher(
+			    "/views/country/editCountry.jsp"
+			    );
+			    reqDispatcher.forward(request,response);
 				return;
 			}
 		}
@@ -64,6 +80,9 @@ public class CountriesServlet extends HttpServlet {
             		+ "<td>"
             		+ "       <a href=\"http://localhost:8080/orders-app/Countries?delete=1&country_code=" + country.getCountryCode() +"\">"
             		+ "              Delete"
+            		+ "       </a>"
+            		+ "       <a href=\"http://localhost:8080/orders-app/Countries?edit=1&country_code=" + country.getCountryCode() +"\">"
+            		+ "              Edit"
             		+ "       </a>"
             		+ "</td>"
            		+ "</tr>";
