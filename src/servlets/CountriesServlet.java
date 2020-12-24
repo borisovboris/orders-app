@@ -91,7 +91,8 @@ public class CountriesServlet extends HttpServlet {
 	    String countryName = request.getParameter("countryName");
 	    String continentName = request.getParameter("continentName");
 	    
-	    System.out.print(countryCode);
+	    CountryService countryService = new CountryService();
+	    countryService.createCountry(countryCode, countryName, continentName);
 	    
 	    try {
 			response.sendRedirect("http://localhost:8080/orders-app/Countries");

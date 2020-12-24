@@ -89,6 +89,20 @@ public class CountryService {
 			}
 		}
 	}
+	
+	public void createCountry(String countryCode, String countryName, String continentName) {
+		try {
+			connection = new DBConnection().getConnection();
+			statement = connection.createStatement();
+			statement.executeUpdate("insert into country"
+					+ " values ( '" + countryCode + "', '" + countryName + "', '" + continentName
+					+ "');");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			cleanUp();
+		}
+	}
 
 	public void cleanUp() {
 
