@@ -45,7 +45,7 @@ public class CountriesServlet extends HttpServlet {
 			}
 		}
 		
-		String createButton = "<a href=\"views/createCountry\">Create</a>";
+		String createButton = "<a href=\"http://localhost:8080/orders-app/views/country/createCountry.jsp\">Create</a>";
 		String tableHead = "<tr>\r\n"
 				+ "        <th>Country Code</th>\r\n"
 				+ "        <th>Name</th>\r\n"
@@ -55,19 +55,18 @@ public class CountriesServlet extends HttpServlet {
 		String dataRows = "";
 		
 		List<Country> countryList = countryService.getCountries();
+		
 		for (Country country : countryList) {
             String dataRow = "<tr>\r\n"
             		+ "<td>" + country.getCountryCode() +"</td>\r\n"
             		+ "<td>" + country.getName() +"</td>\r\n"
             		+ "<td>" + country.getContinentName() +"</td>\r\n"
             		+ "<td>"
-            		+ "<button>"
             		+ "       <a href=\"http://localhost:8080/orders-app/Countries?delete=1&country_code=" + country.getCountryCode() +"\">"
             		+ "              Delete"
             		+ "       </a>"
-            		+ "</button>"
             		+ "</td>"
-            		+ "</tr>";
+           		+ "</tr>";
             
             dataRows += dataRow;
         }
@@ -88,8 +87,17 @@ public class CountriesServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String countryCode = request.getParameter("countryCode");
+	    String countryName = request.getParameter("countryName");
+	    String continentName = request.getParameter("continentName");
+	    
+	    System.out.print(countryCode);
+	    
+	    try {
+			response.sendRedirect("http://localhost:8080/orders-app/Countries");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	//  http://www.site.com?param1=1&param2=2
