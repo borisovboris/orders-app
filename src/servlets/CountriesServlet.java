@@ -49,8 +49,9 @@ public class CountriesServlet extends HttpServlet {
 		
 		if(toEdit != null) {
 			if(toEdit.equals("1") && countryCode != null) {
-				String message = "Example source code of Servlet to JSP communication.";
-			    request.setAttribute("message", message);
+	//			String message = "Example source code of Servlet to JSP communication.";
+				Country country = countryService.getCountry(countryCode);
+			    request.setAttribute("country", country);
 
 			    //Servlet JSP communication
 			    RequestDispatcher reqDispatcher = getServletConfig().getServletContext().getRequestDispatcher(

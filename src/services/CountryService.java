@@ -71,6 +71,27 @@ public class CountryService {
 
 	}
 	
+	public Country getCountry(String countryCode) {
+		Country country = new Country();
+		
+		try {
+			connection = new DBConnection().getConnection();
+			statement = connection.createStatement();
+			rs = statement.executeQuery("select * from country WHERE country_code = "
+					+ "'" + countryCode + "'");
+			
+			country.setCountryCode(rs.getString("country_code"));
+			country.setName(rs.getString("name"));
+			country.setContinentName(rs.getString("continent_name"));
+		} catch (Exception e) {
+			System.out.print("error getCountries");
+		}  finally {
+			cleanUp();
+		}
+
+		return country;
+	}
+	
 	public void deleteCountry(String countryCode, HttpServletResponse response) {
 		System.out.print("deleteCountry");
 		try {
