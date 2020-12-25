@@ -34,71 +34,79 @@ public class CountriesServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String toDelete = request.getParameter("delete");
-		String toEdit = request.getParameter("edit");
-		String countryCode = request.getParameter("country_code");
+//		String toDelete = request.getParameter("delete");
+//		String toEdit = request.getParameter("edit");
+//		String countryCode = request.getParameter("country_code");
 		CountryService countryService = new CountryService();
-		PageManager pageManager = new PageManager();
+//		PageManager pageManager = new PageManager();
 		
-		if(toDelete != null) {
-			if(toDelete.equals("1") && countryCode != null) {
-				deleteCountry(countryCode, response);
-				return;
-			}
-		}
+//		if(toDelete != null) {
+//			if(toDelete.equals("1") && countryCode != null) {
+//				deleteCountry(countryCode, response);
+//				return;
+//			}
+//		}
 		
-		if(toEdit != null) {
-			if(toEdit.equals("1") && countryCode != null) {
-	//			String message = "Example source code of Servlet to JSP communication.";
-				Country country = countryService.getCountry(countryCode);
-			    request.setAttribute("country", country);
-
-			    //Servlet JSP communication
-			    RequestDispatcher reqDispatcher = getServletConfig().getServletContext().getRequestDispatcher(
-			    "/views/country/editCountry.jsp"
-			    );
-			    reqDispatcher.forward(request,response);
-				return;
-			}
-		}
+//		if(toEdit != null) {
+//			if(toEdit.equals("1") && countryCode != null) {
+//	//			String message = "Example source code of Servlet to JSP communication.";
+//				Country country = countryService.getCountry(countryCode);
+//			    request.setAttribute("country", country);
+//
+//			    //Servlet JSP communication
+//			    RequestDispatcher reqDispatcher = getServletConfig().getServletContext().getRequestDispatcher(
+//			    "/views/country/editCountry.jsp"
+//			    );
+//			    reqDispatcher.forward(request,response);
+//				return;
+//			}
+//		}
 		
-		String createButton = "<a href=\"http://localhost:8080/orders-app/views/country/createCountry.jsp\">Create</a>";
-		String tableHead = "<tr>\r\n"
-				+ "        <th>Country Code</th>\r\n"
-				+ "        <th>Name</th>\r\n"
-				+ "        <th>Continent Name</th>\r\n"
-				+ "        <th>Action</th>\r\n"
-				+ "    </tr>";
-		String dataRows = "";
+//		String createButton = "<a href=\"http://localhost:8080/orders-app/views/country/createCountry.jsp\">Create</a>";
+//		String tableHead = "<tr>\r\n"
+//				+ "        <th>Country Code</th>\r\n"
+//				+ "        <th>Name</th>\r\n"
+//				+ "        <th>Continent Name</th>\r\n"
+//				+ "        <th>Action</th>\r\n"
+//				+ "    </tr>";
+//		String dataRows = "";
 		
 		List<Country> countryList = countryService.getCountries();
+	    request.setAttribute("countryList", countryList);
+
+	    //Servlet JSP communication
+	    RequestDispatcher reqDispatcher = getServletConfig().getServletContext().getRequestDispatcher(
+	    "/views/country/allCountries.jsp"
+	    );
+	    reqDispatcher.forward(request,response);
+		return;
 		
-		for (Country country : countryList) {
-            String dataRow = "<tr>\r\n"
-            		+ "<td>" + country.getCountryCode() +"</td>\r\n"
-            		+ "<td>" + country.getName() +"</td>\r\n"
-            		+ "<td>" + country.getContinentName() +"</td>\r\n"
-            		+ "<td>"
-            		+ "       <a href=\"http://localhost:8080/orders-app/Countries?delete=1&country_code=" + country.getCountryCode() +"\">"
-            		+ "              Delete"
-            		+ "       </a>"
-            		+ "       <a href=\"http://localhost:8080/orders-app/Countries?edit=1&country_code=" + country.getCountryCode() +"\">"
-            		+ "              Edit"
-            		+ "       </a>"
-            		+ "</td>"
-           		+ "</tr>";
-            
-            dataRows += dataRow;
-        }
+//		for (Country country : countryList) {
+//            String dataRow = "<tr>\r\n"
+//            		+ "<td>" + country.getCountryCode() +"</td>\r\n"
+//            		+ "<td>" + country.getName() +"</td>\r\n"
+//            		+ "<td>" + country.getContinentName() +"</td>\r\n"
+//            		+ "<td>"
+//            		+ "       <a href=\"http://localhost:8080/orders-app/Countries?delete=1&country_code=" + country.getCountryCode() +"\">"
+//            		+ "              Delete"
+//            		+ "       </a>"
+//            		+ "       <a href=\"http://localhost:8080/orders-app/Countries?edit=1&country_code=" + country.getCountryCode() +"\">"
+//            		+ "              Edit"
+//            		+ "       </a>"
+//            		+ "</td>"
+//           		+ "</tr>";
+//            
+//            dataRows += dataRow;
+//        }
 		
-		String table = ("<table id=\"data-table\">" + tableHead + dataRows +
-		"</table>");
-		
-		String content = createButton + table;
-		
-		response.setContentType("text/html");
-		response.getWriter()
-				.append(pageManager.getHTMLDocument(content, request));
+//		String table = ("<table id=\"data-table\">" + tableHead + dataRows +
+//		"</table>");
+//		
+//		String content = createButton + table;
+//		
+//		response.setContentType("text/html");
+//		response.getWriter()
+//				.append(pageManager.getHTMLDocument(content, request));
 	}
 
 	/**

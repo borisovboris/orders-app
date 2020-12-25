@@ -12,7 +12,6 @@
 <body>
 
 	<% Country country = (Country)request.getAttribute("country"); %>
-		<% out.println(country.getCountryCode()); %>
 	
 	<form action="${pageContext.request.contextPath}/Countries?edit=1" method="post">
 	
