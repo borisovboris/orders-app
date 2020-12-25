@@ -80,6 +80,16 @@ public class CountriesServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String toEdit = request.getParameter("edit");
+		
+		if(toEdit != null) {
+			if(toEdit.equals("1")) {
+				doPut(request, response);
+				return;
+			}
+		}
+		
+		
 		String countryCode = request.getParameter("countryCode");
 	    String countryName = request.getParameter("countryName");
 	    String continentName = request.getParameter("continentName");
@@ -88,6 +98,18 @@ public class CountriesServlet extends HttpServlet {
 	    countryService.createCountry(countryCode, countryName, continentName);
 	    
 		response.sendRedirect(request.getContextPath() + "/Countries");
+	}
+	
+	protected void doPut(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		String countryCode = request.getParameter("countryCode");
+	    String countryName = request.getParameter("countryName");
+	    String continentName = request.getParameter("continentName");
+	    
+	    CountryService countryService = new CountryService();
+	    countryService.editCountry(countryCode, countryName, continentName);
+	    response.sendRedirect(request.getContextPath() + "/Countries");
 	}
 	
 	//  http://www.site.com?param1=1&param2=2

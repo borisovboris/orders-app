@@ -93,7 +93,6 @@ public class CountryService {
 	}
 	
 	public void deleteCountry(String countryCode) {
-		System.out.print("deleteCountry");
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
@@ -113,6 +112,25 @@ public class CountryService {
 			statement.executeUpdate("insert into country"
 					+ " values ( '" + countryCode + "', '" + countryName + "', '" + continentName
 					+ "');");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			cleanUp();
+		}
+	}
+	
+	public void editCountry(String countryCode, String countryName, String continentName) {
+		try {
+			connection = new DBConnection().getConnection();
+			statement = connection.createStatement();
+			statement.executeUpdate(
+			"UPDATE country "
+			+ "SET country_code =" + "'" + countryCode +"',"
+			+ " name =" + "'" + countryName +"',"
+			+ " continent_name =" + "'" + continentName +"' "
+			+ "WHERE "
+			+ "country_code =" + "'" + countryCode + "';"
+			);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
