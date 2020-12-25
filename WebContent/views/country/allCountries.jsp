@@ -44,6 +44,11 @@
 	    </div>
 	</nav>
 	
+	<a
+	href="<%= baseUrl %>/views/country/createCountry.jsp">
+		Create
+	</a>
+	
 	<%List<Country> countryList = (List<Country>)request.getAttribute("countryList"); %>
 	
 	<table id="data-table">
@@ -59,10 +64,15 @@
 	        <td><%= country.getName() %></td>
 			<td><%= country.getContinentName() %></td>
 	        <td>
-	                <a href="http://localhost:8080/orders-app/Countries?delete=1&country_code=
-	                <%= country.getCountryCode() %>">
-	                    Delete
-	                </a>
+                <a 
+                href="<%= baseUrl %>/Countries?delete=1&country_code=<%= country.getCountryCode() %>">
+                    Delete
+                </a>
+                
+                <a 
+                href="<%= baseUrl %>/Countries?edit=1&country_code=<%= country.getCountryCode() %>">
+                    Edit
+                </a>
 	        </td>
 	    </tr>
 	    <% } %>

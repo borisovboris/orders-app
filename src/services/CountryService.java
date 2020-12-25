@@ -92,7 +92,7 @@ public class CountryService {
 		return country;
 	}
 	
-	public void deleteCountry(String countryCode, HttpServletResponse response) {
+	public void deleteCountry(String countryCode) {
 		System.out.print("deleteCountry");
 		try {
 			connection = new DBConnection().getConnection();
@@ -103,11 +103,6 @@ public class CountryService {
 			e.printStackTrace();
 		} finally {
 			cleanUp();
-			try {
-				response.sendRedirect("http://localhost:8080/orders-app/Countries");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 		}
 	}
 	

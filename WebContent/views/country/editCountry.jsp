@@ -11,9 +11,10 @@
 </head>
 <body>
 
+	<% String baseUrl = request.getContextPath(); %>
 	<% Country country = (Country)request.getAttribute("country"); %>
 	
-	<form action="${pageContext.request.contextPath}/Countries?edit=1" method="post">
+	<form action="<%= baseUrl %>/Countries?edit=1" method="post">
 	
 		<p>Country code        
 	    <input type="text" name="countryCode" value="<%=country.getCountryCode()%>"/></p>
@@ -27,7 +28,7 @@
 		<p>Submit button.
 	    <input type="submit" name="submit" value="submit" /></p>
 	    
-		<a href="http://localhost:8080/orders-app/Countries">Back</a>
+		<a href="<%= baseUrl %>/Countries">Back</a>
 		
 	</form>
 	

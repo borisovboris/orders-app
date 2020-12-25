@@ -7,8 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<% String baseUrl = request.getContextPath(); %>
+	
 	CREATE COUNTRY
-	<form action="${pageContext.request.contextPath}/Countries" method="post">
+	<form action="<%= baseUrl %>/Countries" method="post">
 	
 		<p>Country code        
 	    <input type="text" name="countryCode" /></p>
