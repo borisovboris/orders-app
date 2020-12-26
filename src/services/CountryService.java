@@ -106,6 +106,9 @@ public class CountryService {
 	}
 	
 	public void createCountry(String countryCode, String countryName, String continentName) {
+		if(countryCode.equals("") | countryName.equals("") | continentName.equals("")) {
+			throw new Error("403 Bad Request");
+		}
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();

@@ -17,13 +17,16 @@
 	<form action="<%= baseUrl %>/Countries?edit=1" method="post">
 	
 		<p>Country code        
-	    <input type="text" name="countryCode" value="<%=country.getCountryCode()%>"/></p>
+	    <input type="text" name="countryCode" value="<%=country.getCountryCode()%>"
+	    class="input-field"/></p>
 	    
 	    <p>Country name        
-	    <input type="text" name="countryName" value="<%=country.getName()%>"/></p>
+	    <input type="text" name="countryName" value="<%=country.getName()%>"
+	    class="input-field"/></p>
 	    
 	    <p>Continent name        
-	    <input type="text" name="continentName" value="<%=country.getContinentName()%>"/></p>
+	    <input type="text" name="continentName" value="<%=country.getContinentName()%>"
+	    class="input-field"/></p>
 	    
 		<p>Submit button.
 	    <input type="submit" name="submit" value="submit" /></p>

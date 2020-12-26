@@ -21,3 +21,39 @@
 .button:hover {
 	cursor: pointer;
 }
+
+#back-button {
+	display: block;
+	position: absolute;
+	bottom: 5%;
+	font-size: 1.2rem;
+}
+
+#submit-entity {
+	display: block;
+	font-size: 1.2rem;
+	margin: 10px 0;
+}
+
+.input-field {
+	width: 70%;
+	border-radius: 30px;
+	padding: 8px 10px;
+	overflow: hidden;
+	transition: 0.15s ease-out;
+}
+
+.input-field:focus {
+	width: 80%;
+}
+
+
+@media screen and (min-width: 980px) {
+	.input-field {
+		width: 40%;
+	}
+	
+	.input-field:focus {
+		width: 50%;
+	}
+}

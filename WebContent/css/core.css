@@ -33,3 +33,10 @@ a {
 	content: "";
 	clear: both;
 }
+
+.lighter {
+	font-weight: lighter;
+	margin: 10px 0;
+}
+
+
