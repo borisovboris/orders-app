@@ -3,13 +3,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+	<link rel="stylesheet" type="text/css" href="css/core.css">
+	<link rel="stylesheet" type="text/css" href="css/buttons.css">
 </head>
 <body>
 	<% String baseUrl = request.getContextPath(); %>
 	
-	CREATE COUNTRY
+	<h1 class="uppercase">Add country</h1>
+	
 	<form action="<%= baseUrl %>/Countries" method="post">
 	
 		<p>Country code        

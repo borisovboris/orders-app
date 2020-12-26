@@ -1,0 +1,126 @@
+nav {
+	background-color: #1976d2;
+	color: #fff;
+	padding: 25px 20px;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+	position: fixed;
+	width: 100%;
+}
+
+nav .buttons-container {
+	display: none;
+}
+
+nav a {
+	padding: 12px 10px;
+	border-radius: 2px;
+}
+
+
+.nav-button:hover {
+	background-color: rgba(255, 255, 255, 0.2);
+}
+
+.right {
+	float: right;
+	width: 30%;
+}
+
+.middle {
+	float: left;
+	width: 40%
+}
+
+.left {
+	float: left;
+	width: 30%;
+}
+
+#searchbar {
+	float: left;
+	width: 55%;
+	border-radius: 30px;
+	padding: 8px 10px;
+	overflow: hidden;
+	transition: 0.15s ease-out;
+}
+
+#searchbar:focus {
+	width: 65%;
+}
+
+#search-button {
+	margin-left: 15px;
+	float: left;
+}
+
+footer {
+	background-color: #1976d2;
+	color: #fff;
+}
+
+.menu-bar {
+	width: 35px;
+	height: 3px;
+	background-color: #fff;
+	margin: 6px 0;
+	border-radius: 4px;
+}
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+#dropdown-content {
+	left: -57%;
+	top: 63px;
+	position: absolute;
+	color: #444;;
+	background-color: #fff;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	display: none;
+	z-index: 1;
+	transition: all 2s;
+}
+
+#dropdown-content a {
+	display: block;
+	min-width: 15rem;
+}
+
+#dropdown-content a:hover {
+	background-color: #dbd9d0;
+	color: #1976d2;
+}
+
+#add-button {
+	display: inline-block;
+	margin: 8px 0px;
+}
+
+
+@media screen and (min-width: 980px) {
+	#searchbar {
+		width: 25%;
+	}
+	#searchbar:focus {
+		width: 35%;
+	}
+	nav .buttons-container {
+		display: block;
+	}
+
+	.left {
+		width: 75%;
+	}
+	.middle {
+		width: 15%;
+	}
+	.right {
+		width: 10%;
+	}
+	.dropdown {
+		display: none;
+	}
+}

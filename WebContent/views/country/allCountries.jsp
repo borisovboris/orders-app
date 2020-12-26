@@ -10,78 +10,124 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Countries</title>
-<link rel="stylesheet" type="text/css" href="css/styles.css">
+<link rel="stylesheet" type="text/css" href="css/core.css">
+<link rel="stylesheet" type="text/css" href="css/container.css">
+<link rel="stylesheet" type="text/css" href="css/buttons.css">
+<link rel="stylesheet" type="text/css" href="css/nav.css">
+<link rel="stylesheet" type="text/css" href="css/table.css">
 </head>
 <body>
 
 	<% String baseUrl = request.getContextPath(); %> 
 	
 	<nav>
-	    <div class="buttons-container">
-	        <a class="button nav-button" href="<%= baseUrl %>/OrderedItems">
-	            Ordered Items
-	        </a>
-	        <a class="button nav-button" href="<%= baseUrl %>/Orders">
-	            Orders
-	        </a>
-	        <a class="button nav-button" href="<%= baseUrl %>/Products">
-	            Products
-	        </a>
-	        <a class="button nav-button" href="<%= baseUrl %>/Users">
-	            Users
-	        </a>
-	        <a class="button nav-button" href="<%= baseUrl %>/Merchants">
-	            Merchants
-	        </a>
-	        <a class="button nav-button" href="<%= baseUrl %>/Countries">
-	            Countries
-	        </a>
-	    </div>
-	
-	    <div class="searchbar-container">
-	        <input class="searchbar" placeholder="Search for keywords">
-	        <a>Go</a>
-	    </div>
-	</nav>
-	
-	<a
-	href="<%= baseUrl %>/views/country/createCountry.jsp">
-		Create
-	</a>
-	
-	<%List<Country> countryList = (List<Country>)request.getAttribute("countryList"); %>
-	
-	<table id="data-table">
-	    <tr>
-	        <th>Country code</th>
-	        <th>Name</th>
-	        <th>Continent</th>
-	        <th>Action</th>
-	    </tr>
-	    <% for (Country country : countryList) { %>
-	    	<tr>
-	        <td><%= country.getCountryCode() %></td>
-	        <td><%= country.getName() %></td>
-			<td><%= country.getContinentName() %></td>
-	        <td>
-                <a 
-                href="<%= baseUrl %>/Countries?delete=1&country_code=<%= country.getCountryCode() %>">
-                    Delete
+        <div class="left">
+            <div class="buttons-container">
+                <a class="button nav-button uppercase" href="<%=baseUrl%>/OrderedItems">
+                	Ordered Items
                 </a>
-                
-                <a 
-                href="<%= baseUrl %>/Countries?edit=1&country_code=<%= country.getCountryCode() %>">
-                    Edit
+                <a class="button nav-button uppercase" href="<%=baseUrl%>/Orders">
+                	Orders
                 </a>
-	        </td>
-	    </tr>
-	    <% } %>
-	    
-	</table>
-	
-	<footer>
-    <p>This is the footer</p>
-	</footer>
+                <a class="button nav-button uppercase" href="<%=baseUrl%>/Products">
+                	Products
+                </a>
+                <a class="button nav-button uppercase" href="<%=baseUrl%>/Users">
+                	Users
+                </a>
+                <a class="button nav-button uppercase" href="<%=baseUrl%>/Merchants">
+                	Merchants
+                </a>
+                <a class="button nav-button uppercase" href="<%=baseUrl%>/Countries">
+                	Countries
+                </a>
+            </div>
 
+            <div class="dropdown">
+                <div id="dropdown-menu" class="button">
+                    <div class="menu-bar"></div>
+                    <div class="menu-bar"></div>
+                    <div class="menu-bar"></div>
+                </div>
+
+                <div id="dropdown-content">
+                    <a class="button dropdown-button uppercase" href="<%=baseUrl%>/OrderedItems">
+                    	Ordered Items
+                    </a>
+                    <a class="button dropdown-button uppercase" href="<%=baseUrl%>/Orders">
+                    	Orders
+                    </a>
+                    <a class="button dropdown-button uppercase" href="<%=baseUrl%>/Products">
+                    	Products
+                    </a>
+                    <a class="button dropdown-button uppercase" href="<%=baseUrl%>/Users">
+                    	Users
+                    </a>
+                    <a class="button dropdown-button uppercase" href="<%=baseUrl%>/Merchants">
+                    	Merchants
+                    </a>
+                    <a class="button dropdown-button uppercase" href="<%=baseUrl%>/Countries">
+                    	Countries
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="middle">
+        </div>
+
+        <div class="right">
+        </div>
+    </nav>
+    
+    <div class="wrapper">
+        <div class="container">
+            <div id="search-container" class="clearfix">
+                <input id="searchbar"placeholder="Search for name">
+                <a id="search-button" class="button baby-blue">Search</a>   
+            </div>
+            
+            <a id="add-button" class="baby-blue" href="<%= baseUrl %>/views/country/createCountry.jsp">
+				Add
+			</a>
+			
+			<%List<Country> countryList = (List<Country>)request.getAttribute("countryList"); %>
+	
+			<table id="data-table">
+			    <tr>
+			        <th>Country code</th>
+			        <th>Name</th>
+			        <th>Continent</th>
+			        <th>Action</th>
+			    </tr>
+			    <% for (Country country : countryList) { %>
+			    	<tr>
+			        <td><%= country.getCountryCode() %></td>
+			        <td><%= country.getName() %></td>
+					<td><%= country.getContinentName() %></td>
+			        <td>
+		                <a class="light-red"
+		                href="<%= baseUrl %>/Countries?delete=1&country_code=<%= country.getCountryCode() %>">
+		                    Delete
+		                </a>
+		                
+		                <a class="baby-blue"
+		                href="<%= baseUrl %>/Countries?edit=1&country_code=<%= country.getCountryCode() %>">
+		                    Edit
+		                </a>
+			        </td>
+			    </tr>
+			    <% } %>
+			    
+			</table>
+			
+        </div>
+    </div>
+    
+    <footer>
+    			<p>This is the footer</p>
+	</footer>
+	
+	<script type="text/javascript" src="scripts/dropdown.js"></script>
 </body>
 </html>

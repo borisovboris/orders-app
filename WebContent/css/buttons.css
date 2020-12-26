@@ -1,0 +1,23 @@
+.baby-blue {
+	background-color: #89cff0;
+	padding: 7px 10px;
+	border-radius: 30px;
+}
+
+.baby-blue:hover {
+	background-color: #89afff;
+}
+
+.light-red {
+	background-color: #FF6666;
+	padding: 7px 10px;
+	border-radius: 30px;
+}
+
+.light-red:hover {
+	background-color: #CF6666;
+}
+
+.button:hover {
+	cursor: pointer;
+}

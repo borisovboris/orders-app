@@ -1,0 +1,21 @@
+.container {
+	padding-top: 200px;
+	background-color: #D0D0D0;
+	padding: 150px 50px;
+	height: inherit;
+}
+
+.wrapper {
+	height: 100vh;
+	width: 100%;
+	padding: 0px 50px;
+}
+
+
+@media screen and (min-width: 980px) {
+	
+	.wrapper {
+		padding: 0px 150px;
+	}
+	
+}

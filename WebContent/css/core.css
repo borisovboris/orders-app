@@ -1,0 +1,35 @@
+:root {
+	font-family: 'Helvetica', 'Arial', sans-serif;
+	-webkit-appearance: none;
+}
+
+body {
+	background-color: #fff;
+}
+
+textarea, input {
+	outline: none;
+	border: none;
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
+
+.clearfix:after {
+	display: table;
+	content: "";
+	clear: both;
+}
