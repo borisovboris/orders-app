@@ -6,34 +6,46 @@
 <!DOCTYPE html>
 <html>
 <head>
+<% String baseUrl = request.getContextPath(); %>
 <meta charset="ISO-8859-1">
 <title>Edit Country</title>
+<link rel="stylesheet" type="text/css" href="<%= baseUrl %>/css/core.css">
+<link rel="stylesheet" type="text/css" href="<%= baseUrl %>/css/container.css">
+<link rel="stylesheet" type="text/css" href="<%= baseUrl %>/css/buttons.css">
 </head>
 <body>
 
-	<% String baseUrl = request.getContextPath(); %>
 	<% Country country = (Country)request.getAttribute("country"); %>
 	
-	<form action="<%= baseUrl %>/Countries?edit=1" method="post">
+	<div class="wrapper">
+		<div class="container">
+			<h1 class="lighter">Edit country</h1>
 	
-		<p>Country code        
-	    <input type="text" name="countryCode" value="<%=country.getCountryCode()%>"
-	    class="input-field"/></p>
-	    
-	    <p>Country name        
-	    <input type="text" name="countryName" value="<%=country.getName()%>"
-	    class="input-field"/></p>
-	    
-	    <p>Continent name        
-	    <input type="text" name="continentName" value="<%=country.getContinentName()%>"
-	    class="input-field"/></p>
-	    
-		<p>Submit button.
-	    <input type="submit" name="submit" value="submit" /></p>
-	    
-		<a href="<%= baseUrl %>/Countries">Back</a>
-		
-	</form>
+			<form action="<%= baseUrl %>/Countries?edit=1" method="post">
+				
+				<h3 class="lighter">Country code</h3>        
+			    <input type="text" name="countryCode" 
+			    value="<%=country.getCountryCode()%>"
+			    class="input-field"/>
+			    
+			    <h3 class="lighter">Country name</h3>        
+			    <input type="text" name="countryName" 
+			    value="<%=country.getName()%>"
+			    class="input-field"/>
+			    
+			    <h3 class="lighter">Continent name</h3>        
+			    <input type="text" name="continentName" 
+			    value="<%=country.getContinentName()%>"
+			    class="input-field"/>
+			    
+			    <input type="submit" name="submit" value="Update" class="baby-blue button" 
+			    id="submit-entity"/>
+				
+			</form>
+			
+			<a href="<%= baseUrl %>/Countries" class="light-red" id="back-button">Back</a>
+		</div>
+	</div>
 	
 </body>
 </html>

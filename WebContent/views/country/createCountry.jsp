@@ -5,7 +5,7 @@
 <head>
 	<% String baseUrl = request.getContextPath(); %>
 	<meta charset="ISO-8859-1">
-	<title>Insert title here</title>
+	<title>Add country</title>
 	<link rel="stylesheet" type="text/css" href="<%= baseUrl %>/css/core.css">
 	<link rel="stylesheet" type="text/css" href="<%= baseUrl %>/css/container.css">
 	<link rel="stylesheet" type="text/css" href="<%= baseUrl %>/css/buttons.css">
