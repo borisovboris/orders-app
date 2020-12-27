@@ -48,6 +48,15 @@
 	width: 80%;
 }
 
+.error-message {
+	margin: 10px 0;
+	padding: 8px 10px;
+	display: inline-block;
+	clear: both;
+	border-radius: 30px;
+	background-color: #FF6666;
+}
+
 
 @media screen and (min-width: 980px) {
 	.input-field {

@@ -16,15 +16,15 @@ function validateFields(event) {
         errors.push("Please fill out all fields");
     } else {
         if(!isNumber(countryCode.value)) {
-            errors.push("Country code must be a number!");
+            errors.push("Country code must be a number");
         }
     
         if(isNumber(countryName.value)) {
-            errors.push("Country name should be written in letters!");
+            errors.push("Country name should be written in letters");
         }
     
         if(isNumber(continentName.value)) {
-            errors.push("Continent name should be written in letters!");
+            errors.push("Continent name should be written in letters");
         }
     }
 
@@ -33,7 +33,7 @@ function validateFields(event) {
     if(errors.length > 0) {
         let errorString = "";
         for(const error of errors) {
-            errorString += `<p>${error}</p>`;
+            errorString += `<p class="error-message">${error}</p>`;
         }
 
         errorContainer.innerHTML = errorString;
