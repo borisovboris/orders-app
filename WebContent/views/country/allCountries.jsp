@@ -94,34 +94,40 @@
 			</a>
 			
 			<%List<Country> countryList = (List<Country>)request.getAttribute("countryList"); %>
+			
+			<% if(countryList.size() != 0) { %>
+				<table id="data-table">
+				    <tr>
+				        <th>Country code</th>
+				        <th>Name</th>
+				        <th>Continent</th>
+				        <th>Action</th>
+				    </tr>
+				    <% for (Country country : countryList) { %>
+				    	<tr>
+				        <td><%= country.getCountryCode() %></td>
+				        <td><%= country.getName() %></td>
+						<td><%= country.getContinentName() %></td>
+				        <td>
+			                <a class="light-red"
+			                href="<%= baseUrl %>/Countries?delete=1&country_code=<%= country.getCountryCode() %>">
+			                    Delete
+			                </a>
+			                
+			                <a class="baby-blue"
+			                href="<%= baseUrl %>/Countries?edit=1&country_code=<%= country.getCountryCode() %>">
+			                    Edit
+			                </a>
+				        </td>
+				    </tr>
+				    <% } %>
 	
-			<table id="data-table">
-			    <tr>
-			        <th>Country code</th>
-			        <th>Name</th>
-			        <th>Continent</th>
-			        <th>Action</th>
-			    </tr>
-			    <% for (Country country : countryList) { %>
-			    	<tr>
-			        <td><%= country.getCountryCode() %></td>
-			        <td><%= country.getName() %></td>
-					<td><%= country.getContinentName() %></td>
-			        <td>
-		                <a class="light-red"
-		                href="<%= baseUrl %>/Countries?delete=1&country_code=<%= country.getCountryCode() %>">
-		                    Delete
-		                </a>
-		                
-		                <a class="baby-blue"
-		                href="<%= baseUrl %>/Countries?edit=1&country_code=<%= country.getCountryCode() %>">
-		                    Edit
-		                </a>
-			        </td>
-			    </tr>
-			    <% } %>
 			    
-			</table>
+				</table>
+			<% } else { %>
+				<h1 class="lighter">No countries to show</h1>
+				<a href="<%= baseUrl %>/Countries" class="light-red" id="back-button">Back</a>
+			<% }%>
 			
         </div>
     </div>
