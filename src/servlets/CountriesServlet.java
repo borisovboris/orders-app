@@ -48,7 +48,6 @@ public class CountriesServlet extends HttpServlet {
 		
 		if(toEdit != null) {
 			if(toEdit.equals("1") && countryCode != null) {
-	//			String message = "Example source code of Servlet to JSP communication.";
 				Country country = countryService.getCountry(countryCode);
 			    request.setAttribute("country", country);
 
@@ -84,6 +83,7 @@ public class CountriesServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String toEdit = request.getParameter("edit");
+		String toSearch = request.getParameter("search");
 		
 		if(toEdit != null) {
 			if(toEdit.equals("1")) {
@@ -91,6 +91,15 @@ public class CountriesServlet extends HttpServlet {
 				return;
 			}
 		}
+		
+		if(toSearch != null) {
+			if(toSearch.equals("1")) {
+				searchCountry(request, response);
+				return;
+			}
+		}
+		
+		
 		
 		
 		String countryCode = request.getParameter("countryCode");
@@ -120,6 +129,24 @@ public class CountriesServlet extends HttpServlet {
 	protected void deleteCountry(String countryCode) {
 		CountryService countryService = new CountryService();
 		countryService.deleteCountry(countryCode);
+	}
+	
+	protected void searchCountry(HttpServletRequest request, HttpServletResponse response) {
+		String countryName = request.getParameter("countryName");
+		CountryService countryService = new CountryService();
+		
+		List<Country> countryList = countryService.searchCountries(countryName);
+	    request.setAttribute("countryList", countryList);
+
+	    RequestDispatcher reqDispatcher = getServletConfig().getServletContext().getRequestDispatcher(
+	    "/views/country/allCountries.jsp");		
+	    try {
+			reqDispatcher.forward(request,response);
+		} catch (ServletException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

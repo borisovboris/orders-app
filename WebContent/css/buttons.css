@@ -23,16 +23,16 @@
 }
 
 #back-button {
-	display: block;
-	position: absolute;
-	bottom: 5%;
+	display: inline-block;
 	font-size: 1.2rem;
+	margin-top: 100px;
+	margin-bottom: 10px;
 }
 
 #submit-entity {
+	margin: 10px 0;
 	display: block;
 	font-size: 1.2rem;
-	margin: 10px 0;
 }
 
 .input-field {
@@ -41,6 +41,7 @@
 	padding: 8px 10px;
 	overflow: hidden;
 	transition: 0.15s ease-out;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
 .input-field:focus {

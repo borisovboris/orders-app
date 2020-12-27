@@ -83,8 +83,10 @@
     <div class="wrapper">
         <div class="container">
             <div id="search-container" class="clearfix">
-                <input id="searchbar"placeholder="Search for name">
-                <a id="search-button" class="button baby-blue">Search</a>   
+            <form action="<%= baseUrl %>/Countries?search=1" method="post">
+            	<input id="searchbar" name="countryName" placeholder="Search for country">
+                <input id="search-button" class="button baby-blue" type="submit" value="Search">
+            </form>   
             </div>
             
             <a id="add-button" class="baby-blue" href="<%= baseUrl %>/views/country/createCountry.jsp">

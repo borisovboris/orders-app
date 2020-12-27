@@ -141,6 +141,37 @@ public class CountryService {
 			cleanUp();
 		}
 	}
+	
+	public List<Country> searchCountries(String countryName) {
+		try {
+			connection = new DBConnection().getConnection();
+			statement = connection.createStatement();
+			rs = statement.executeQuery("select * from country WHERE "
+					+ "name = " + "'" + countryName + "'");
+			if(rs == null) {
+				return null;
+			}
+		} catch (Exception e) {
+			System.out.print("error searchCountries");
+			e.printStackTrace();
+		}
+
+		try {
+			while (rs.next()) {
+				Country country = new Country();
+				country.setCountryCode(rs.getString("country_code"));
+				country.setName(rs.getString("name"));
+				country.setContinentName(rs.getString("continent_name"));
+				countries.add(country);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			cleanUp();
+		}
+
+		return countries;
+	}
 
 	public void cleanUp() {
 

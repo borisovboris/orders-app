@@ -3,6 +3,7 @@
 	background-color: #D0D0D0;
 	padding: 150px 50px;
 	height: inherit;
+	overflow: auto;
 }
 
 .wrapper {
