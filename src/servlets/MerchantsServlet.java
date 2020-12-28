@@ -7,9 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import utilities.FooterManager;
-import utilities.NavManager;
-
 /**
  * Servlet implementation class MerchantsServlet
  */
@@ -29,15 +26,10 @@ public class MerchantsServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		NavManager navManager = new NavManager();
-		FooterManager footerManager = new FooterManager();
+		
 		
 		response.setContentType("text/html");
-		response.getWriter().append(
-				navManager.getNavbarHTML(request) + 
-				"This is Merchants" +
-				footerManager.getFooterHTML()
-		);
+		response.getWriter().append("Merchants");
 	}
 
 	/**

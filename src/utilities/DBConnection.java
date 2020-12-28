@@ -10,7 +10,7 @@ public class DBConnection {
 		
 		try {
 			Class.forName("org.sqlite.JDBC");
-		    connection = DriverManager.getConnection("jdbc:sqlite:test.db");		
+		    connection = DriverManager.getConnection("jdbc:sqlite:test.db;FKSupport=True");		
 		} catch(Exception e) { 
 			System.out.println(e);
 		}
