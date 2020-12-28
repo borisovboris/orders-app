@@ -57,6 +57,10 @@
 	background-color: #FF6666;
 }
 
+.actions-cell {
+	min-width: 200px;
+}
+
 
 @media screen and (min-width: 980px) {
 	.input-field {

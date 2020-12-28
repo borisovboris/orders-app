@@ -8,6 +8,18 @@ public class User {
 	private String _dateOfBirth;
 	private int _countryCode;
 	private String _createdAt;
+	private String _countryName;
+	
+	
+	public void setCountryName(String countryName) {
+		_countryName = countryName;
+	}
+	
+	public String getCountryName() {
+		return _countryName;
+	}
+	
+	/* -------------------------------------------------------------------------*/
 	
 	public void setId(int id) {
 		_id = id;

@@ -25,7 +25,7 @@ public class CountryService {
 			statement = connection.createStatement();
 			statement.executeUpdate("create table if not exists country (" 
 					+ "country_code int primary key," 
-					+ "name unqiue string,"
+					+ "country_name unqiue string,"
 					+ "continent_name string" 
 					+ ");"
 			);
@@ -57,7 +57,7 @@ public class CountryService {
 			while (rs.next()) {
 				Country country = new Country();
 				country.setCountryCode(rs.getString("country_code"));
-				country.setName(rs.getString("name"));
+				country.setCountryName(rs.getString("country_name"));
 				country.setContinentName(rs.getString("continent_name"));
 				countries.add(country);
 			}
@@ -81,7 +81,7 @@ public class CountryService {
 					+ "'" + countryCode + "'");
 			
 			country.setCountryCode(rs.getString("country_code"));
-			country.setName(rs.getString("name"));
+			country.setCountryName(rs.getString("country_name"));
 			country.setContinentName(rs.getString("continent_name"));
 		} catch (Exception e) {
 			System.out.print("error getCountries");
@@ -130,7 +130,7 @@ public class CountryService {
 			statement.executeUpdate(
 			"UPDATE country "
 			+ "SET country_code =" + "'" + countryCode +"',"
-			+ " name =" + "'" + countryName +"',"
+			+ " country_name =" + "'" + countryName +"',"
 			+ " continent_name =" + "'" + continentName +"' "
 			+ "WHERE "
 			+ "country_code =" + "'" + countryCode + "';"
@@ -147,7 +147,7 @@ public class CountryService {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
 			rs = statement.executeQuery("select * from country WHERE "
-					+ "name = " + "'" + countryName + "'");
+					+ "country_name = " + "'" + countryName + "'");
 			if(rs == null) {
 				return null;
 			}
@@ -160,7 +160,7 @@ public class CountryService {
 			while (rs.next()) {
 				Country country = new Country();
 				country.setCountryCode(rs.getString("country_code"));
-				country.setName(rs.getString("name"));
+				country.setCountryName(rs.getString("country_name"));
 				country.setContinentName(rs.getString("continent_name"));
 				countries.add(country);
 			}

@@ -106,7 +106,7 @@
 				    <% for (Country country : countryList) { %>
 				    	<tr>
 				        <td><%= country.getCountryCode() %></td>
-				        <td><%= country.getName() %></td>
+				        <td><%= country.getCountryName() %></td>
 						<td><%= country.getContinentName() %></td>
 				        <td>
 			                <a class="light-red"

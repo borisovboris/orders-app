@@ -15,11 +15,11 @@ public class Country {
 	
 	/* ----------------------------------------------------------------------- */
 	
-	public void setName(String name) {
+	public void setCountryName(String name) {
 		_name = name;
 	}
 	
-	public String getName() {
+	public String getCountryName() {
 		return _name;
 	}
 	

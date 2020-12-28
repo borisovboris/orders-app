@@ -24,10 +24,11 @@ public class UserService {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
+			statement.executeUpdate("drop table if exists user");
 			statement.executeUpdate("create table if not exists user (" 
 					+ "id INTEGER PRIMARY KEY AUTOINCREMENT," 
 					+ "FULL_NAME TEXT NOT NULL,"
-					+ "EMAIL TEXT NOT NULL," 
+					+ "EMAIL TEXT UNIQUE NOT NULL," 
 					+ "GENDER TEXT NOT NULL,"
 					+ "DOB TEXT NOT NULL,"
 					+ "COUNTRY_CODE INT,"
@@ -41,9 +42,9 @@ public class UserService {
 				statement.executeUpdate(
 				"insert into user (full_name, email, gender, dob, country_code, created_at) values"
 				+ "('Ivan Petkov', 'ivan@gmail.com', 'Male', '18.11.1999', 359, '12.10.2010'),"
-				+ "('Emil Cholakov', 'emil@abv.bg', 'Male', '04.06.1988', 7, '09.08.2000'),"
-				+ "('Veska Popova', 'veska@gmail.com', 'Female', '10.09.1995', 1, '06.10.2005'),"
-				+ "('Atanas Mihailov', 'atanas@gmail.com', 'Male', '12.12.1980', 44, '10.07.2001');");	
+				+ "('Emil Cholakov', 'emil@abv.bg', 'Male', '04.06.1988', 34, '09.08.2000'),"
+				+ "('Veska Popova', 'veska@gmail.com', 'Female', '10.09.1995', 34, '06.10.2005'),"
+				+ "('Atanas Mihailov', 'atanas@gmail.com', 'Male', '12.12.1980', 34, '10.07.2001');");	
 			}
 
 		} catch (Exception e) {
@@ -58,8 +59,13 @@ public class UserService {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
-			rs = statement.executeQuery("select * from user");
+		//	rs = statement.executeQuery("select * from user");
+			rs = statement.executeQuery("SELECT u.id, u.full_name, u.email, u.gender, c.country_name "
+					+ "FROM user AS u "
+					+ "INNER JOIN country AS c "
+					+ "ON u.country_code = c.country_code;");
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.out.print("error getUsers");
 		}
 
@@ -70,9 +76,7 @@ public class UserService {
 				user.setFullName(rs.getString("full_name"));
 				user.setEmail(rs.getString("email"));
 				user.setGender(rs.getString("gender"));
-				user.setDateOfBirth(rs.getString("dob"));
-				user.setCountryCode(rs.getInt("country_code"));
-				user.setCreatedAt(rs.getString("created_at"));
+				user.setCountryName(rs.getString("country_name"));
 				
 				users.add(user);
 			}

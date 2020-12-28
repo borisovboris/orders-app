@@ -31,7 +31,7 @@
 			    
 			    <h3 class="lighter">Country name</h3>        
 			    <input type="text" name="countryName" 
-			    value="<%=country.getName()%>"
+			    value="<%=country.getCountryName()%>"
 			    id="countryName"
 			    class="input-field"/>
 			    

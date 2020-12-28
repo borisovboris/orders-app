@@ -101,9 +101,7 @@
 				    	<th>Full name</th>
 				        <th>Email</th>
 				        <th>Gender</th>
-				        <th>Date of birth</th>
-				        <th>Country code</th>
-				        <th>Created at</th>
+				        <th>Country</th>
 				        <th>Action</th>
 				    </tr>
 				    <% for (User user : userList) { %>
@@ -111,10 +109,8 @@
 				    	<td><%= user.getFullName() %></td>
 				        <td><%= user.getEmail() %></td>
 				        <td><%= user.getGender() %></td>
-				        <td><%= user.getDateOfBirth() %></td>
-				        <td><%= user.getCountryCode() %></td>
-				        <td><%= user.getCreatedAt() %></td>
-				        <td>
+				        <td><%= user.getCountryName() %></td>
+				        <td class="actions-cell">
 			                <a class="light-red"
 			                href="<%= baseUrl %>/Users?delete=1&user_id=<%= user.getId() %>">
 			                    Delete
