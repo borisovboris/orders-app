@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
-<%@ page import="models.Order"%>
+<%@ page import="models.User"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.List"%>
 
@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Orders</title>
+<title>Users</title>
 <link rel="stylesheet" type="text/css" href="css/core.css">
 <link rel="stylesheet" type="text/css" href="css/container.css">
 <link rel="stylesheet" type="text/css" href="css/buttons.css">
@@ -55,7 +55,7 @@
                     	Ordered Items
                     </a>
                     <a class="button dropdown-button uppercase" href="<%=baseUrl%>/Orders">
-                    	Orders
+                    	Users
                     </a>
                     <a class="button dropdown-button uppercase" href="<%=baseUrl%>/Products">
                     	Products
@@ -83,39 +83,45 @@
     <div class="wrapper">
         <div class="container">
             <div id="search-container" class="clearfix">
-            <form action="<%= baseUrl %>/Orders?search=1" method="post">
-            	<input id="searchbar" name="orderId" placeholder="Search for order">
+            <form action="<%= baseUrl %>/Users?search=1" method="post">
+            	<input id="searchbar" name="userId" placeholder="Search for user">
                 <input id="search-button" class="button baby-blue" type="submit" value="Search">
             </form>   
             </div>
             
-            <a id="add-button" class="baby-blue" href="<%= baseUrl %>/views/order/createOrder.jsp">
+            <a id="add-button" class="baby-blue" href="<%= baseUrl %>/views/user/createUser.jsp">
 				Add
 			</a>
 			
-			<%List<Order> orderList = (List<Order>)request.getAttribute("orderList"); %>
+			<%List<User> userList = (List<User>)request.getAttribute("userList"); %>
 			
-			<% if(orderList.size() != 0) { %>
+			<% if(userList.size() != 0) { %>
 				<table id="data-table">
 				    <tr>
-				    	<th>Order ID</th>
-				        <th>Status</th>
+				    	<th>Full name</th>
+				        <th>Email</th>
+				        <th>Gender</th>
+				        <th>Date of birth</th>
+				        <th>Country code</th>
 				        <th>Created at</th>
 				        <th>Action</th>
 				    </tr>
-				    <% for (Order order : orderList) { %>
+				    <% for (User user : userList) { %>
 				    	<tr>
-				    	<td><%= order.getId() %></td>
-				        <td><%= order.getStatus() %></td>
-				        <td><%= order.getCreatedAt() %></td>
+				    	<td><%= user.getFullName() %></td>
+				        <td><%= user.getEmail() %></td>
+				        <td><%= user.getGender() %></td>
+				        <td><%= user.getDateOfBirth() %></td>
+				        <td><%= user.getCountryCode() %></td>
+				        <td><%= user.getCreatedAt() %></td>
 				        <td>
 			                <a class="light-red"
-			                href="<%= baseUrl %>/Orders?delete=1&order_id=<%= order.getId() %>">
+			                href="<%= baseUrl %>/Users?delete=1&user_id=<%= user.getId() %>">
 			                    Delete
 			                </a>
 			                
 			                <a class="baby-blue"
-			                href="<%= baseUrl %>/Orders?edit=1&order_id=<%= order.getId() %>">
+			                href="<%= baseUrl %>/Users?edit=1&user_id=<%= user.getId() %>">
 			                    Edit
 			                </a>
 				        </td>
@@ -125,8 +131,8 @@
 			    
 				</table>
 			<% } else { %>
-				<h1 class="lighter">No orders to show</h1>
-				<a href="<%= baseUrl %>/Orders" class="light-red" id="back-button">Back</a>
+				<h1 class="lighter">No users to show</h1>
+				<a href="<%= baseUrl %>/Users" class="light-red" id="back-button">Back</a>
 			<% }%>
 			
         </div>

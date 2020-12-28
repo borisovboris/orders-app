@@ -129,15 +129,13 @@ public class OrderService {
 		}
 	}
 	
-	public void editOrder(int orderId, int orderUserId, String orderStatus, String orderCreatedAt) {
+	public void editOrder(int orderId, String orderStatus) {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
 			statement.executeUpdate(
 			"UPDATE orders "
-			+ "SET user_id =" + "'" + orderUserId +"',"
-			+ " order_status =" + "'" + orderStatus +"',"
-			+ " created_at =" + "'" + orderCreatedAt +"' "
+			+ "SET order_status =" + "'" + orderStatus +"' "
 			+ "WHERE "
 			+ "id =" + "'" + orderId + "';"
 			);

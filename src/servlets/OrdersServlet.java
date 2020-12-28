@@ -28,7 +28,6 @@ public class OrdersServlet extends HttpServlet {
      */
     public OrdersServlet() {
         super();
-        // TODO Auto-generated constructor stub
         helper = new Helper();
     }
 
@@ -119,12 +118,10 @@ public class OrdersServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		int orderId = helper.stringToInteger(request.getParameter("orderId"));
-		int orderUserId = helper.stringToInteger(request.getParameter("orderUserId"));
 	    String orderStatus = request.getParameter("orderStatus");
-	    String orderCreatedAt = request.getParameter("orderCreatedAt");
 	    
 	    OrderService orderService = new OrderService();
-	    orderService.editOrder(orderId, orderUserId, orderStatus, orderCreatedAt);
+	    orderService.editOrder(orderId, orderStatus);
 	    response.sendRedirect(request.getContextPath() + "/Orders");
 	}
 	
@@ -135,7 +132,7 @@ public class OrdersServlet extends HttpServlet {
 	}
 	
 	protected void searchOrder(HttpServletRequest request, HttpServletResponse response) {
-		int orderId = helper.stringToInteger(request.getParameter("order_id"));
+		int orderId = helper.stringToInteger(request.getParameter("orderId"));
 		OrderService orderService = new OrderService();
 		
 		List<Order> orderList = orderService.searchOrders(orderId);

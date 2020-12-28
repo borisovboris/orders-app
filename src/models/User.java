@@ -19,11 +19,11 @@ public class User {
 	
 	/* ----------------------------------------------------------------------- */
 	
-	public void setName(String name) {
+	public void setFullName(String name) {
 		_name = name;
 	}
 	
-	public String getName() {
+	public String getFullName() {
 		return _name;
 	}
 	

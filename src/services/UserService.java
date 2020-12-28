@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import models.Country;
+import models.Order;
 import models.User;
 import utilities.DBConnection;
 
@@ -24,20 +25,21 @@ public class UserService {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
 			statement.executeUpdate("create table if not exists user (" 
-					+ "id INTEGER PRIMARY KEY autoincrement," 
-					+ "name string not null,"
-					+ "email string not null," 
-					+ "gender string not null,"
-					+ "dob string not null,"
-					+ "country_code int not null,"
-					+ "created_at string not null"
+					+ "id INTEGER PRIMARY KEY AUTOINCREMENT," 
+					+ "FULL_NAME TEXT NOT NULL,"
+					+ "EMAIL TEXT NOT NULL," 
+					+ "GENDER TEXT NOT NULL,"
+					+ "DOB TEXT NOT NULL,"
+					+ "COUNTRY_CODE INT,"
+					+ "CREATED_AT TEXT NOT NULL,"
+					+ "FOREIGN KEY (COUNTRY_CODE) REFERENCES COUNTRY(COUNTRY_CODE)"
 					+ ");"
 			);
 
 			rs = statement.executeQuery("SELECT COUNT(*) AS rowcount FROM user");
 			if (rs.getInt("rowcount") == 0) {
 				statement.executeUpdate(
-				"insert into user (name, email, gender, dob, country_code, created_at) values"
+				"insert into user (full_name, email, gender, dob, country_code, created_at) values"
 				+ "('Ivan Petkov', 'ivan@gmail.com', 'Male', '18.11.1999', 359, '12.10.2010'),"
 				+ "('Emil Cholakov', 'emil@abv.bg', 'Male', '04.06.1988', 7, '09.08.2000'),"
 				+ "('Veska Popova', 'veska@gmail.com', 'Female', '10.09.1995', 1, '06.10.2005'),"
@@ -64,7 +66,8 @@ public class UserService {
 		try {
 			while (rs.next()) {
 				User user = new User();
-				user.setName(rs.getString("name"));
+				user.setId(rs.getInt("id"));
+				user.setFullName(rs.getString("full_name"));
 				user.setEmail(rs.getString("email"));
 				user.setGender(rs.getString("gender"));
 				user.setDateOfBirth(rs.getString("dob"));
@@ -82,6 +85,148 @@ public class UserService {
 		return users;
 
 	}
+	
+	
+	public User getUser(int userId) {
+		User user = new User();
+		
+		try {
+			connection = new DBConnection().getConnection();
+			statement = connection.createStatement();
+			rs = statement.executeQuery("select * from user WHERE id = "
+					+ "'" + userId + "'");
+			
+			user.setId(rs.getInt("id"));
+			user.setFullName(rs.getString("full_name"));
+			user.setEmail(rs.getString("email"));
+			user.setGender(rs.getString("gender"));
+			user.setDateOfBirth(rs.getString("dob"));
+			user.setCountryCode(rs.getInt("country_code"));
+			user.setCreatedAt(rs.getString("created_at"));
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.print("error getUser");
+		}  finally {
+			cleanUp();
+		}
+
+		return user;
+	}
+	
+	public void deleteUser(int userId) {
+		try {
+			connection = new DBConnection().getConnection();
+			statement = connection.createStatement();
+			statement.executeUpdate("DELETE FROM USER WHERE id = "
+			+ userId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			cleanUp();
+		}
+	}
+	
+	public void createUser(
+			String userFullName, 
+			String userEmail, 
+			String userGender,
+			String dob,
+			int userCountryCode,
+			String createdAt
+		) {
+		
+		if(
+		   userFullName.equals("") | 
+		   userEmail.equals("") |
+		   userGender.equals("") |
+		   dob.equals("") |
+		   createdAt.equals("")
+		   ) {
+			throw new Error("403 Bad Request");
+		}
+		
+		
+		
+		try {
+			connection = new DBConnection().getConnection();
+			statement = connection.createStatement();
+			statement.executeUpdate("insert into orders "
+					+ "(full_name, email, gender, dob, country_code, created_at) "
+					+ " values ( '" + userFullName + "', '" + userEmail + "', '" + userGender
+					+ "', " + "'" + dob + "' , " + userCountryCode + "'" + createdAt + "');");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			cleanUp();
+		}
+	}
+	
+	
+	public void editUser(
+			int userId,
+			String userFullName, 
+			String userEmail, 
+			String userGender,
+			String dob,
+			int userCountryCode
+		) {
+		try {
+			connection = new DBConnection().getConnection();
+			statement = connection.createStatement();
+			statement.executeUpdate(
+			"UPDATE user "
+			+ "SET full_name = " + "'" + userFullName + "' ,"
+			+ "email = " + "'" + userEmail + "' ,"
+			+ "gender = " + "'" + userGender + "' ,"
+			+ "dob = " + "'" + dob + "' ,"
+			+ "country_code = "  + userCountryCode + " ,"
+			+ "WHERE "
+			+ "id =" + "'" + userId + "';"
+			);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			cleanUp();
+		}
+	}
+	
+	public List<User> searchUsers(int userId) {
+		try {
+			connection = new DBConnection().getConnection();
+			statement = connection.createStatement();
+			rs = statement.executeQuery("select * from user WHERE "
+					+ "id = " + "'" + userId + "'");
+			if(rs == null) {
+				return null;
+			}
+		} catch (Exception e) {
+			System.out.print("error searchUsers");
+			e.printStackTrace();
+		}
+		
+		try {
+			while (rs.next()) {
+				User user = new User();
+				user.setId(rs.getInt("id"));
+				user.setFullName(rs.getString("full_name"));
+				user.setEmail(rs.getString("email"));
+				user.setGender(rs.getString("gender"));
+				user.setDateOfBirth(rs.getString("dob"));
+				user.setCountryCode(rs.getInt("country_code"));
+				user.setCreatedAt(rs.getString("created_at"));
+				users.add(user);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			cleanUp();
+		}
+
+		return users;
+	}
+	
+	
 
 	public void cleanUp() {
 
