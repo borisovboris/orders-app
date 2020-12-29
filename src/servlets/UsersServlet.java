@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Country;
 import models.User;
+import services.CountryService;
 import services.UserService;
 import utilities.Helper;
 
@@ -37,8 +39,24 @@ public class UsersServlet extends HttpServlet {
 		Helper helper = new Helper();
 		String toDelete = request.getParameter("delete");
 		String toEdit = request.getParameter("edit");
+		String toCreate = request.getParameter("create");
 		
 		UserService userService = new UserService();
+		CountryService countryService = new CountryService();
+		
+		if(toCreate != null) {
+			if(toCreate.equals("1")) {
+				
+				RequestDispatcher reqDispatcher = getServletConfig().getServletContext().getRequestDispatcher(
+				"/views/user/createUser.jsp");
+				
+				List<Country> countryList = countryService.getCountries();
+			    request.setAttribute("countryList", countryList);
+			    
+				reqDispatcher.forward(request,response);
+				return;
+			}
+		}
 		
 		if(toDelete != null) {
 			if(toDelete.equals("1")) {
@@ -54,7 +72,8 @@ public class UsersServlet extends HttpServlet {
 				int userId = helper.stringToInteger(request.getParameter("user_id"));
 				User user = userService.getUser(userId);
 			    request.setAttribute("user", user);
-
+			    List<Country> countryList = countryService.getCountries();
+			    request.setAttribute("countryList", countryList);
 			    //Servlet JSP communication
 			    RequestDispatcher reqDispatcher = getServletConfig().getServletContext().getRequestDispatcher(
 			    "/views/user/editUser.jsp"
@@ -63,8 +82,7 @@ public class UsersServlet extends HttpServlet {
 				return;
 			}
 		}
-		
-		
+	    
 		List<User> userList = userService.getUsers();
 	    request.setAttribute("userList", userList);
 

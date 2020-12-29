@@ -89,7 +89,7 @@
             </form>   
             </div>
             
-            <a id="add-button" class="baby-blue" href="<%= baseUrl %>/views/user/createUser.jsp">
+            <a id="add-button" class="baby-blue" href="<%= baseUrl %>/Users?create=1">
 				Add
 			</a>
 			

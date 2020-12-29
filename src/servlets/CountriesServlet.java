@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import models.Country;
 import services.CountryService;
+import utilities.Helper;
 
 /**
  * Servlet implementation class Countries
@@ -19,12 +20,14 @@ import services.CountryService;
 @WebServlet("/Countries")
 public class CountriesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	Helper helper;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public CountriesServlet() {
 		super();
+		helper = new Helper();
 	}
 
 	/**
@@ -35,11 +38,12 @@ public class CountriesServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String toDelete = request.getParameter("delete");
 		String toEdit = request.getParameter("edit");
-		String countryCode = request.getParameter("country_code");
+		int countryCode;
 		CountryService countryService = new CountryService();
 		
 		if(toDelete != null) {
-			if(toDelete.equals("1") && countryCode != null) {
+			if(toDelete.equals("1")) {
+				countryCode = helper.stringToInteger(request.getParameter("country_code"));
 				deleteCountry(countryCode);
 				response.sendRedirect(request.getContextPath() + "/Countries");
 				return;
@@ -47,7 +51,8 @@ public class CountriesServlet extends HttpServlet {
 		}
 		
 		if(toEdit != null) {
-			if(toEdit.equals("1") && countryCode != null) {
+			if(toEdit.equals("1")) {
+				countryCode = helper.stringToInteger(request.getParameter("country_code"));
 				Country country = countryService.getCountry(countryCode);
 			    request.setAttribute("country", country);
 
@@ -102,7 +107,7 @@ public class CountriesServlet extends HttpServlet {
 		
 		
 		
-		String countryCode = request.getParameter("countryCode");
+		int countryCode = helper.stringToInteger(request.getParameter("country_code"));
 	    String countryName = request.getParameter("countryName");
 	    String continentName = request.getParameter("continentName");
 	    
@@ -115,7 +120,7 @@ public class CountriesServlet extends HttpServlet {
 	protected void doPut(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String countryCode = request.getParameter("countryCode");
+		int countryCode = helper.stringToInteger(request.getParameter("country_code"));
 	    String countryName = request.getParameter("countryName");
 	    String continentName = request.getParameter("continentName");
 	    
@@ -126,7 +131,7 @@ public class CountriesServlet extends HttpServlet {
 	
 	//  http://www.site.com?param1=1&param2=2
 	
-	protected void deleteCountry(String countryCode) {
+	protected void deleteCountry(int countryCode) {
 		CountryService countryService = new CountryService();
 		countryService.deleteCountry(countryCode);
 	}

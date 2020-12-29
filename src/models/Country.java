@@ -1,15 +1,15 @@
 package models;
 
 public class Country {
-	private String _countryCode;
+	private int _countryCode;
 	private String _name; 
 	private String _continentName;
 	
-	public void setCountryCode(String countryCode) {
+	public void setCountryCode(int countryCode) {
 		_countryCode = countryCode;
 	}
 	
-	public String getCountryCode() {
+	public int getCountryCode() {
 		return _countryCode;
 	}
 	

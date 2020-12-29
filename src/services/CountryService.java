@@ -23,6 +23,7 @@ public class CountryService {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
+			statement.executeUpdate("drop table if exists country");
 			statement.executeUpdate("create table if not exists country (" 
 					+ "country_code int primary key," 
 					+ "country_name unqiue string,"
@@ -56,7 +57,7 @@ public class CountryService {
 		try {
 			while (rs.next()) {
 				Country country = new Country();
-				country.setCountryCode(rs.getString("country_code"));
+				country.setCountryCode(rs.getInt("country_code"));
 				country.setCountryName(rs.getString("country_name"));
 				country.setContinentName(rs.getString("continent_name"));
 				countries.add(country);
@@ -71,16 +72,16 @@ public class CountryService {
 
 	}
 	
-	public Country getCountry(String countryCode) {
+	public Country getCountry(int countryCode) {
 		Country country = new Country();
 		
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
 			rs = statement.executeQuery("select * from country WHERE country_code = "
-					+ "'" + countryCode + "'");
+					 + countryCode);
 			
-			country.setCountryCode(rs.getString("country_code"));
+			country.setCountryCode(rs.getInt("country_code"));
 			country.setCountryName(rs.getString("country_name"));
 			country.setContinentName(rs.getString("continent_name"));
 		} catch (Exception e) {
@@ -92,7 +93,7 @@ public class CountryService {
 		return country;
 	}
 	
-	public void deleteCountry(String countryCode) {
+	public void deleteCountry(int countryCode) {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
@@ -105,8 +106,8 @@ public class CountryService {
 		}
 	}
 	
-	public void createCountry(String countryCode, String countryName, String continentName) {
-		if(countryCode.equals("") | countryName.equals("") | continentName.equals("")) {
+	public void createCountry(int countryCode, String countryName, String continentName) {
+		if(countryName.equals("") | continentName.equals("")) {
 			throw new Error("403 Bad Request");
 		}
 		
@@ -123,17 +124,17 @@ public class CountryService {
 		}
 	}
 	
-	public void editCountry(String countryCode, String countryName, String continentName) {
+	public void editCountry(int countryCode, String countryName, String continentName) {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
 			statement.executeUpdate(
 			"UPDATE country "
-			+ "SET country_code =" + "'" + countryCode +"',"
+			+ "SET country_code =" + countryCode +","
 			+ " country_name =" + "'" + countryName +"',"
 			+ " continent_name =" + "'" + continentName +"' "
 			+ "WHERE "
-			+ "country_code =" + "'" + countryCode + "';"
+			+ "country_code = " + countryCode + ";"
 			);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -159,7 +160,7 @@ public class CountryService {
 		try {
 			while (rs.next()) {
 				Country country = new Country();
-				country.setCountryCode(rs.getString("country_code"));
+				country.setCountryCode(rs.getInt("country_code"));
 				country.setCountryName(rs.getString("country_name"));
 				country.setContinentName(rs.getString("continent_name"));
 				countries.add(country);

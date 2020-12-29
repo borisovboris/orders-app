@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+<%@ page import="models.Country"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="java.util.List"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,10 +42,17 @@
 			    id="userDateOfBirth"
 			    class="input-field"/>
 			    
-			    <h3 class="lighter">Country code</h3>        
-			    <input type="text" name="userCountryCode" 
-			    id="userCountryCode"
-			    class="input-field"/>
+			    <h3 class="lighter">
+			    	<label for="userCountryCode">Country:</label>
+			    </h3>
+				
+				<%List<Country> countryList = (List<Country>)request.getAttribute("countryList"); %>
+				
+				<select id="userCountryCode" class="select-css">
+				<%for (Country country : countryList) { %>
+				  <option value="<%= country.getCountryCode()%>"><%= country.getCountryName() %></option>
+				  <% } %>
+				</select>
 			    
 			    <input type="text" name="userCreatedAt" 
 			    id="userCreatedAt"
