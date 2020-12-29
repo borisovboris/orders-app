@@ -24,7 +24,7 @@ public class UserService {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
-			statement.executeUpdate("drop table if exists user");
+			//statement.executeUpdate("drop table if exists user");
 			statement.executeUpdate("create table if not exists user (" 
 					+ "id INTEGER PRIMARY KEY AUTOINCREMENT," 
 					+ "FULL_NAME TEXT NOT NULL,"
@@ -98,7 +98,7 @@ public class UserService {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
 			rs = statement.executeQuery("select * from user WHERE id = "
-					+ "'" + userId + "'");
+					+ userId);
 			
 			user.setId(rs.getInt("id"));
 			user.setFullName(rs.getString("full_name"));
@@ -184,9 +184,8 @@ public class UserService {
 			+ "email = " + "'" + userEmail + "' ,"
 			+ "gender = " + "'" + userGender + "' ,"
 			+ "dob = " + "'" + dob + "' ,"
-			+ "country_code = "  + userCountryCode + " ,"
-			+ "WHERE "
-			+ "id =" + "'" + userId + "';"
+			+ "country_code = " + userCountryCode
+			+ " WHERE id = " + userId + ";"
 			);
 		} catch (Exception e) {
 			e.printStackTrace();

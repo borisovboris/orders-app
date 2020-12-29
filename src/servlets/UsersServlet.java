@@ -123,6 +123,7 @@ public class UsersServlet extends HttpServlet {
 		String userEmail = request.getParameter("userEmail");
 		String userGender = request.getParameter("userGender");
 		String userDateOfBirth = request.getParameter("userDateOfBirth");
+		System.out.print(request.getParameter("userCountryCode") + " AAAAA");
 		int userCountryCode = helper.stringToInteger(request.getParameter("userCountryCode"));
 		String createdAt = request.getParameter("createdAt");
 	    

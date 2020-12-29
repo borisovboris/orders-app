@@ -107,7 +107,7 @@ public class CountriesServlet extends HttpServlet {
 		
 		
 		
-		int countryCode = helper.stringToInteger(request.getParameter("country_code"));
+		int countryCode = helper.stringToInteger(request.getParameter("countryCode"));
 	    String countryName = request.getParameter("countryName");
 	    String continentName = request.getParameter("continentName");
 	    
@@ -120,7 +120,7 @@ public class CountriesServlet extends HttpServlet {
 	protected void doPut(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		int countryCode = helper.stringToInteger(request.getParameter("country_code"));
+		int countryCode = helper.stringToInteger(request.getParameter("countryCode"));
 	    String countryName = request.getParameter("countryName");
 	    String continentName = request.getParameter("continentName");
 	    

@@ -24,7 +24,11 @@
 		<div class="container">
 			<h1 class="lighter">Edit user</h1>
 	
-			<form action="<%= baseUrl %>/Users?edit=1" method="post" id="form">
+			<form action="<%= baseUrl %>/Users?edit=1" method="post" id="form">      
+			    <input type="text" name="userId" 
+			    id="userId"
+			    value="<%=user.getId()%>"
+			    class="input-field"/ hidden>
 				
 				<h3 class="lighter">Full name</h3>        
 			    <input type="text" name="userFullName" 
@@ -56,7 +60,7 @@
 				
 				<%List<Country> countryList = (List<Country>)request.getAttribute("countryList"); %>
 				
-				<select id="userCountryCode" class="select-css">
+				<select name="userCountryCode" class="select-css">
 				<%for (Country country : countryList) { %>
 					<%if(country.getCountryCode() == user.getCountryCode())  { %>
 						<option selected value="<%= country.getCountryCode()%>"><%= country.getCountryName() %></option>

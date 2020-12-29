@@ -55,7 +55,7 @@
                     	Ordered Items
                     </a>
                     <a class="button dropdown-button uppercase" href="<%=baseUrl%>/Orders">
-                    	Users
+                    	Orders
                     </a>
                     <a class="button dropdown-button uppercase" href="<%=baseUrl%>/Products">
                     	Products

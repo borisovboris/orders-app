@@ -48,7 +48,7 @@
 				
 				<%List<Country> countryList = (List<Country>)request.getAttribute("countryList"); %>
 				
-				<select id="userCountryCode" class="select-css">
+				<select name="userCountryCode" class="select-css">
 				<%for (Country country : countryList) { %>
 				  <option value="<%= country.getCountryCode()%>"><%= country.getCountryName() %></option>
 				  <% } %>
