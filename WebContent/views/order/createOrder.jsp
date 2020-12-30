@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+    <%@ page import="models.User"%>
+	<%@ page import="java.util.ArrayList"%>
+	<%@ page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,11 +20,18 @@
 			<h1 class="lighter">Add order</h1>
 	
 			<form action="<%= baseUrl %>/Orders" method="post" id="form">
-			
-				<h3 class="lighter">User ID</h3>        
-			    <input type="text" name="orderUserId" 
-			    id="orderUserId"
-			    class="input-field"/>
+			    
+			    <h3 class="lighter">
+			    	<label for="orderUserId">User:</label>
+			    </h3>
+			    
+			    <%List<User> userList = (List<User>)request.getAttribute("userList"); %>
+				
+				<select id="orderUserId" name="orderUserId" class="select-css">
+				<%for (User user : userList) { %>
+				  <option value="<%= user.getId()%>"><%= user.getFullName() %></option>
+				  <% } %>
+				</select>
 				
 				<h3 class="lighter">Order status</h3>        
 			    <input type="text" name="orderStatus" 

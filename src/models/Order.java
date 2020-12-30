@@ -5,6 +5,18 @@ public class Order {
 	private int _userId;
 	private String _status;
 	private String _createdAt;
+	private String _userFullName;
+	
+	
+	public void setUserFullName(String userFullName) {
+		_userFullName = userFullName;
+	}
+	
+	public String getUserFullName() {
+		return _userFullName;
+	}
+	
+	/* ----------------------------------------------------------------------- */
 
 	public void setId(int id) {
 		_id = id;

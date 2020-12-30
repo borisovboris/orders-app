@@ -89,7 +89,7 @@
             </form>   
             </div>
             
-            <a id="add-button" class="baby-blue" href="<%= baseUrl %>/views/order/createOrder.jsp">
+            <a id="add-button" class="baby-blue" href="<%= baseUrl %>/Orders?create=1">
 				Add
 			</a>
 			
@@ -101,6 +101,7 @@
 				    	<th>Order ID</th>
 				        <th>Status</th>
 				        <th>Created at</th>
+				        <th>Name</th>
 				        <th>Action</th>
 				    </tr>
 				    <% for (Order order : orderList) { %>
@@ -108,6 +109,7 @@
 				    	<td><%= order.getId() %></td>
 				        <td><%= order.getStatus() %></td>
 				        <td><%= order.getCreatedAt() %></td>
+				        <td><%= order.getUserFullName() %>
 				        <td>
 			                <a class="light-red"
 			                href="<%= baseUrl %>/Orders?delete=1&order_id=<%= order.getId() %>">

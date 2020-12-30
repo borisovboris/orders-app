@@ -10,8 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Country;
 import models.Order;
+import models.User;
 import services.OrderService;
+import services.UserService;
 import utilities.Helper;
 
 /**
@@ -37,8 +40,24 @@ public class OrdersServlet extends HttpServlet {
 		Helper helper = new Helper();
 		String toDelete = request.getParameter("delete");
 		String toEdit = request.getParameter("edit");
+		String toCreate = request.getParameter("create");
 		
 		OrderService orderService = new OrderService();
+		UserService userService = new UserService();
+		
+		if(toCreate != null) {
+			if(toCreate.equals("1")) {
+				
+				RequestDispatcher reqDispatcher = getServletConfig().getServletContext().getRequestDispatcher(
+				"/views/order/createOrder.jsp");
+				
+				List<User> userList = userService.getUsers();
+			    request.setAttribute("userList", userList);
+			    
+				reqDispatcher.forward(request,response);
+				return;
+			}
+		}
 		
 		if(toDelete != null) {
 			if(toDelete.equals("1")) {

@@ -23,11 +23,26 @@
 	
 			<form action="<%= baseUrl %>/Orders?edit=1" method="post" id="form">
 				
-				<h3 class="lighter">Order status</h3>        
-			    <input type="text" name="orderStatus" 
-			    id="orderStatus"
-			    value="<%=order.getStatus()%>"
-			    class="input-field"/>
+				 <h3 class="lighter">Order ID</h3>        
+			    <input type="text" name="orderId" 
+			    id="orderId"
+			    value="<%= order.getId() %>"
+			    class="input-field" hidden/>
+				
+			    
+			    <h3 class="lighter">
+			    	<label for="orderStatus">Status: </label>
+			    </h3>
+			    
+			    <select id="orderStatus" name="orderStatus" class="select-css">
+			    	<%if(order.getStatus().equals("Open")) { %>
+				    	<option value="Open" selected>Open</option>
+				    	<option value="Closed">Closed</option>
+			    	<% } else { %>
+			    		<option value="Open">Open</option>
+				    	<option value="Closed" selected>Closed</option>
+			    	<% } %>
+			    </select>
 			    
 			    <h3 class="lighter">Created at</h3>        
 			    <input type="text" name="orderCreatedAt" 

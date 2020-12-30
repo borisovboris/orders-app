@@ -20,6 +20,7 @@ public class OrderService {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
+			//statement.executeUpdate("DROP TABLE IF EXISTS ORDERS");
 			statement.executeUpdate("CREATE TABLE IF NOT EXISTS ORDERS ("
 					+ "id INTEGER PRIMARY KEY AUTOINCREMENT,"
 					+ "order_status TEXT NOT NULL,"
@@ -48,9 +49,13 @@ public class OrderService {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
-			rs = statement.executeQuery("select * from orders");
+			rs = statement.executeQuery("SELECT o.id, o.user_id, o.order_status, o.created_at, u.full_name "
+					+ "FROM orders AS o "
+					+ "INNER JOIN user AS u "
+					+ "ON o.user_id = u.id;");
 		} catch (Exception e) {
-			System.out.print("error getOrders");
+			e.printStackTrace();
+			System.out.print("error getOrder");
 		}
 
 		try {
@@ -60,6 +65,7 @@ public class OrderService {
 				order.setStatus(rs.getString("order_status"));
 				order.setUserId(rs.getInt("user_id"));
 				order.setCreatedAt(rs.getString("created_at"));
+				order.setUserFullName(rs.getString("full_name"));
 				orders.add(order);
 			}
 		} catch (SQLException e) {
@@ -78,13 +84,17 @@ public class OrderService {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
-			rs = statement.executeQuery("select * from orders WHERE id = "
-					+ "'" + orderId + "'");
+			rs = statement.executeQuery("SELECT o.id, o.user_id, o.order_status, o.created_at, u.full_name "
+					+ "FROM orders AS o "
+					+ "INNER JOIN user AS u "
+					+ "ON o.user_id = u.id");
 			
 			order.setId(rs.getInt("id"));
 			order.setStatus(rs.getString("order_status"));
 			order.setUserId(rs.getInt("user_id"));
 			order.setCreatedAt(rs.getString("created_at"));
+			order.setUserFullName(rs.getString("full_name"));
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.print("error getOrders");
