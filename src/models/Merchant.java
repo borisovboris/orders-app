@@ -6,6 +6,28 @@ public class Merchant {
 	private int _adminId;
 	private int _countryCode;
 	private String _createdAt;
+	private String _adminFullName;
+	private String _countryName;
+	
+	public void setAdminFullName(String adminFullName) {
+		_adminFullName = adminFullName;
+	}
+	
+	public String getAdminFullName() {
+		return _adminFullName;
+	}
+	
+	/* ----------------------------------------------------------------------- */
+	
+	public void setCountryName(String countryName) {
+		_countryName = countryName;
+	}
+	
+	public String getCountryName() {
+		return _countryName;
+	}
+	
+	/* ----------------------------------------------------------------------- */
 	
 	public void setId(int id) {
 		_id = id;
