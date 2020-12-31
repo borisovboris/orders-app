@@ -7,6 +7,17 @@ public class Product {
 	private int _price;
 	private String _status;
 	private String _createdAt;
+	private String _merchantName;
+	
+	public void setMerchantName(String merchantName) {
+		_merchantName = merchantName;
+	}
+	
+	public String getMerchantName() {
+		return _merchantName;
+	}
+	
+	/* ----------------------------------------------------------------------- */
 	
 	public void setId(int id) {
 		_id = id;
