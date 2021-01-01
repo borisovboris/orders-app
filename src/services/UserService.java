@@ -7,8 +7,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import models.Country;
-import models.Order;
 import models.User;
 import utilities.DBConnection;
 

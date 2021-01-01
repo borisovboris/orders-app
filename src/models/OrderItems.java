@@ -1,9 +1,20 @@
 package models;
 
-public class OrderedItem {
+public class OrderItems {
 	private int _orderId;
 	private int _productId;
 	private int _quantity;
+	private String _productName;
+	
+	public void setProductName(String productName) {
+		_productName = productName;
+	}
+	
+	public String getProductName() {
+		return _productName;
+	}
+	
+	/* ----------------------------------------------------------------------- */
 	
 	public void setOrderId(int orderId) {
 		_orderId = orderId;

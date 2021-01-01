@@ -7,7 +7,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import models.Order;
 import models.Product;
 import utilities.DBConnection;
 
@@ -53,7 +52,7 @@ public class ProductService {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
 			rs = statement.executeQuery("SELECT m.name as merchant_name, "
-					+ "p.name as product_name, p.price, p.product_status "
+					+ "p.name as product_name, p.id, p.price, p.product_status "
 					+ "FROM product AS p "
 					+ "INNER JOIN merchant AS m "
 					+ "ON p.merchant_id = m.id;");
@@ -65,6 +64,7 @@ public class ProductService {
 		try {
 			while (rs.next()) {
 				Product product = new Product();
+				product.setId(rs.getInt("id"));
 				product.setMerchantName(rs.getString("merchant_name"));
 				product.setName(rs.getString("product_name"));
 				product.setPrice(rs.getInt("price"));
