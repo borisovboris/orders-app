@@ -20,10 +20,10 @@ public class MerchantService {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
-			//statement.executeUpdate("DROP TABLE IF EXISTS MERCHANT");
-			statement.executeUpdate("CREATE TABLE IF NOT EXIST MERCHANT ("
-					+ "ID INTEGER PRIMARY KEY NOT NULL AUTOINCREMENT,"
-					+ "MERCHANT_NAME TEXT NOT NULL,"
+//			statement.executeUpdate("DROP TABLE IF EXISTS MERCHANT");
+			statement.executeUpdate("CREATE TABLE IF NOT EXISTS MERCHANT ("
+					+ "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
+					+ "MERCHANT_NAME TEXT UNIQUE NOT NULL,"
 					+ "ADMIN_ID INTEGER NOT NULL,"
 					+ "COUNTRY_CODE INT,"
 					+ "CREATED_AT TEXT NOT NULL,"
@@ -68,8 +68,8 @@ public class MerchantService {
 				Merchant merchant = new Merchant();
 				merchant.setId(rs.getInt("id"));
 				merchant.setMerchantName(rs.getString("merchant_name"));
-				merchant.setAdminFullName("full_name");
-				merchant.setCountryName("country_name");
+				merchant.setAdminFullName(rs.getString("full_name"));
+				merchant.setCountryName(rs.getString("country_name"));
 				merchants.add(merchant);
 			}
 		} catch (SQLException e) {
@@ -129,13 +129,14 @@ public class MerchantService {
 					+ "FROM merchant AS m "
 					+ "INNER JOIN user AS u ON m.admin_id = u.id "
 					+ "INNER JOIN country AS c ON m.country_code = c.country_code "
-					+ "WHERE m.merchant_name = " + merchantName
+					+ "WHERE m.merchant_name = " + "'" + merchantName + "';" 
 			);
+			
 			if(rs == null) {
 				return null;
 			}
 		} catch (Exception e) {
-			System.out.print("error searchCountries");
+			System.out.print("error searchMerchants");
 			e.printStackTrace();
 		}
 
@@ -144,8 +145,8 @@ public class MerchantService {
 				Merchant merchant = new Merchant();
 				merchant.setId(rs.getInt("id"));
 				merchant.setMerchantName(rs.getString("merchant_name"));
-				merchant.setAdminFullName("full_name");
-				merchant.setCountryName("country_name");
+				merchant.setAdminFullName(rs.getString("full_name"));
+				merchant.setCountryName(rs.getString("country_name"));
 				merchants.add(merchant);
 			}
 		} catch (SQLException e) {
@@ -191,7 +192,7 @@ public class MerchantService {
 			+ " admin_id =" + adminId +","
 			+ " country_code =" + countryCode
 			+ " WHERE "
-			+ "merchant_id = " + merchantId + ";"
+			+ "id = " + merchantId + ";"
 			);
 		} catch (Exception e) {
 			e.printStackTrace();
