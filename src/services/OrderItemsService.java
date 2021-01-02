@@ -27,10 +27,10 @@ public class OrderItemsService {
 					+ "QUANTITY INT NOT NULL,"
 					+ "PRIMARY KEY(ORDER_ID, PRODUCT_ID),"
 					+ "FOREIGN KEY (ORDER_ID) REFERENCES ORDERS(ID) ON UPDATE CASCADE ON DELETE CASCADE,"
-					+ "FOREIGN KEY (PRODUCT_ID) REFERENCES PRODUCT(ID) ON UPDATE CASCADE ON DELETE CASCADE,"
+					+ "FOREIGN KEY (PRODUCT_ID) REFERENCES PRODUCT(ID) ON UPDATE CASCADE ON DELETE CASCADE"
 					+ ");");
 			
-			rs = statement.executeQuery("SELECT COUNT(*) AS rowcount FROM ordered_item");
+			rs = statement.executeQuery("SELECT COUNT(*) AS rowcount FROM order_items");
 			if (rs.getInt("rowcount") == 0) {
 				statement.executeUpdate("insert into order_items (order_id, product_id, quantity) "
 						+ "values (1, 1, 20)");
@@ -51,7 +51,7 @@ public class OrderItemsService {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
-			rs = statement.executeQuery("SELECT oi.order_id, oi.product_id, oi.quantity, p.name as product_name"
+			rs = statement.executeQuery("SELECT oi.order_id, oi.product_id, oi.quantity, p.name as product_name "
 					+ "FROM order_items AS oi "
 					+ "INNER JOIN  product AS p ON oi.product_id = p.id;"
 				);
@@ -85,13 +85,16 @@ public class OrderItemsService {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
-			rs = statement.executeQuery("SELECT * FROM order_items "
-					+ "WHERE order_items.order_id =" + orderId + " AND "
-					+ "order_items.product_id =" + productId);
+			rs = statement.executeQuery("SELECT oi.order_id, oi.product_id, oi.quantity, p.name as product_name "
+					+ "FROM order_items AS oi "
+					+ "INNER JOIN  product AS p ON oi.product_id = p.id "
+					+ "WHERE oi.order_id =" + orderId + " AND "
+					+ "oi.product_id =" + productId + ";");
 			
 			orderItem.setOrderId(rs.getInt("order_id"));
 			orderItem.setProductId(rs.getInt("product_id"));
 			orderItem.setQuantity(rs.getInt("quantity"));
+			orderItem.setProductName(rs.getString("product_name"));
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.print("error getOrderItem");
