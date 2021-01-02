@@ -20,23 +20,22 @@ public class ProductService {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
-			//statement.executeUpdate("DROP TABLE IF EXISTS PRODUCT");
 			statement.executeUpdate("CREATE TABLE IF NOT EXISTS PRODUCT("
-					+ "  ID INTEGER PRIMARY KEY NOT NULL AUTOINCREMENT,"
+					+ "  ID INTEGER PRIMARY KEY AUTOINCREMENT,"
 					+ "  MERCHANT_ID INTEGER NOT NULL,"
 					+ "  NAME TEXT NOT NULL,"
 					+ "  PRICE INT NOT NULL,"
 					+ "  PRODUCT_STATUS TEXT NOT NULL,"
-					+ "  CREATED AT TEXT NOT NULL,"
+					+ "  CREATED_AT TEXT NOT NULL,"
 					+ " FOREIGN KEY (MERCHANT_ID) REFERENCES merchant(id) ON DELETE CASCADE ON UPDATE CASCADE"
 					+ ");");
 			
-			rs = statement.executeQuery("SELECT COUNT(*) AS rowcount FROM ORDERS");
+			rs = statement.executeQuery("SELECT COUNT(*) AS rowcount FROM product");
 			if (rs.getInt("rowcount") == 0) {
 				statement.executeUpdate("insert into product (merchant_id, name, price, product_status, created_at) "
-						+ "values (1, 'Shovel', 45, 'Available', '03.03.2014')");
+						+ "values (1, 'Shovel', 45, 'In stock', '03.03.2014')");
 				statement.executeUpdate("insert into product (merchant_id, name, price, product_status, created_at) "
-						+ "values (2, 'Bread', 2, 'Available', '31.12.2014')");
+						+ "values (2, 'Bread', 2, 'Out of stock', '31.12.2014')");
 			}
 
 		} catch (Exception e) {
@@ -51,14 +50,14 @@ public class ProductService {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
-			rs = statement.executeQuery("SELECT m.name as merchant_name, "
+			rs = statement.executeQuery("SELECT m.merchant_name, "
 					+ "p.name as product_name, p.id, p.price, p.product_status "
 					+ "FROM product AS p "
 					+ "INNER JOIN merchant AS m "
 					+ "ON p.merchant_id = m.id;");
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.print("error getOrder");
+			System.out.print("error getProducts");
 		}
 
 		try {
@@ -100,7 +99,7 @@ public class ProductService {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.print("error getOrders");
+			System.out.print("error getProduct");
 		}  finally {
 			cleanUp();
 		}
@@ -121,7 +120,7 @@ public class ProductService {
 		}
 	}
 	
-	public void createOrder(
+	public void createProduct(
 				int productMerchantId,
 				String productName,
 				int productPrice,
@@ -139,7 +138,7 @@ public class ProductService {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
 			statement.executeUpdate("insert into product (merchant_id, name, price, product_status, created_at) "
-					+ "values "
+					+ "values ("
 					+ productMerchantId + ","
 					+ "'" + productName + "',"
 					+ productPrice + ","
@@ -179,7 +178,7 @@ public class ProductService {
 		}
 	}
 	
-	public List<Product> searchProducts(int productName) {
+	public List<Product> searchProducts(String productName) {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
@@ -193,7 +192,7 @@ public class ProductService {
 				return null;
 			}
 		} catch (Exception e) {
-			System.out.print("error searchOrders");
+			System.out.print("error searchProducts");
 			e.printStackTrace();
 		}
 

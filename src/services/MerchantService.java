@@ -20,7 +20,7 @@ public class MerchantService {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
-//			statement.executeUpdate("DROP TABLE IF EXISTS MERCHANT");
+			statement.executeUpdate("DROP TABLE IF EXISTS MERCHANT");
 			statement.executeUpdate("CREATE TABLE IF NOT EXISTS MERCHANT ("
 					+ "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
 					+ "MERCHANT_NAME TEXT UNIQUE NOT NULL,"
