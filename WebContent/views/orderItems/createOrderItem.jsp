@@ -20,7 +20,7 @@
 <body>
 	<div class="wrapper">
 		<div class="container">
-			<h1 class="lighter">Add orderItem</h1>
+			<h1 class="lighter">Add order item</h1>
 	
 			<form action="<%= baseUrl %>/OrderItems" method="post" id="form">
 			

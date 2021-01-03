@@ -23,7 +23,7 @@
 	<nav>
         <div class="left">
             <div class="buttons-container">
-                <a class="button nav-button uppercase" href="<%=baseUrl%>/OrderedItems">
+                <a class="button nav-button uppercase" href="<%=baseUrl%>/OrderItems">
                 	Ordered Items
                 </a>
                 <a class="button nav-button uppercase" href="<%=baseUrl%>/Orders">
@@ -51,7 +51,7 @@
                 </div>
 
                 <div id="dropdown-content">
-                    <a class="button dropdown-button uppercase" href="<%=baseUrl%>/OrderedItems">
+                    <a class="button dropdown-button uppercase" href="<%=baseUrl%>/OrderItems">
                     	Ordered Items
                     </a>
                     <a class="button dropdown-button uppercase" href="<%=baseUrl%>/Orders">

@@ -192,12 +192,16 @@ public class UserService {
 		}
 	}
 	
-	public List<User> searchUsers(int userId) {
+	public List<User> searchUsers(String userFullName) {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
-			rs = statement.executeQuery("select * from user WHERE "
-					+ "id = " + "'" + userId + "'");
+			rs = statement.executeQuery("SELECT u.id, u.full_name, u.email, u.gender, c.country_name "
+					+ "FROM user AS u "
+					+ "INNER JOIN country AS c "
+					+ "ON u.country_code = c.country_code "
+					+ "WHERE "
+					+ "full_name LIKE " + "'%" + userFullName + "%'");
 			if(rs == null) {
 				return null;
 			}
@@ -213,9 +217,7 @@ public class UserService {
 				user.setFullName(rs.getString("full_name"));
 				user.setEmail(rs.getString("email"));
 				user.setGender(rs.getString("gender"));
-				user.setDateOfBirth(rs.getString("dob"));
-				user.setCountryCode(rs.getInt("country_code"));
-				user.setCreatedAt(rs.getString("created_at"));
+				user.setCountryName(rs.getString("country_name"));
 				users.add(user);
 			}
 		} catch (SQLException e) {

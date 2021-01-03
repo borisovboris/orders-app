@@ -144,8 +144,8 @@ public class CountryService {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
-			rs = statement.executeQuery("select * from country WHERE "
-					+ "country_name = " + "'" + countryName + "'");
+			rs = statement.executeQuery("select * from country WHERE LOWER"
+					+ "(country_name) LIKE " + "LOWER('%" + countryName + "%');");
 			if(rs == null) {
 				return null;
 			}

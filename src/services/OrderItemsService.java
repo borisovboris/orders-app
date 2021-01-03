@@ -21,13 +21,13 @@ public class OrderItemsService {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
 			//statement.executeUpdate("DROP TABLE IF EXISTS ORDER_ITEMS");
-			statement.executeUpdate("CREATE TABLE IF NOT EXISTS order_items "
+			statement.executeUpdate("CREATE TABLE IF NOT EXISTS order_items ("
 					+ "ORDER_ID INTEGER NOT NULL,"
 					+ "PRODUCT_ID INTEGER NOT NULL,"
 					+ "QUANTITY INT NOT NULL,"
-					+ "PRIMARY KEY(ORDER_ID, PRODUCT_ID),"
 					+ "FOREIGN KEY (ORDER_ID) REFERENCES ORDERS(ID) ON UPDATE CASCADE ON DELETE CASCADE,"
-					+ "FOREIGN KEY (PRODUCT_ID) REFERENCES PRODUCT(ID) ON UPDATE CASCADE ON DELETE CASCADE"
+					+ "FOREIGN KEY (PRODUCT_ID) REFERENCES PRODUCT(ID) ON UPDATE CASCADE ON DELETE CASCADE,"
+					+ "PRIMARY KEY(ORDER_ID, PRODUCT_ID) "
 					+ ");");
 			
 			rs = statement.executeQuery("SELECT COUNT(*) AS rowcount FROM order_items");
@@ -157,11 +157,13 @@ public class OrderItemsService {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
-			rs = statement.executeQuery("select * from order_items WHERE "
-					+ "order_items.order_id = " + orderId + ";");
-			if(rs == null) {
-				return null;
-			}
+			rs = statement.executeQuery("SELECT oi.order_id, oi.product_id, oi.quantity, p.name as product_name "
+					+ "FROM order_items AS oi "
+					+ "INNER JOIN  product AS p ON oi.product_id = p.id "
+					+ " WHERE oi.order_id = " + orderId + ";");
+//			if(rs == null) {
+//				return null;
+//			}
 		} catch (Exception e) {
 			System.out.print("error searchOrderItems");
 			e.printStackTrace();
@@ -181,7 +183,7 @@ public class OrderItemsService {
 		} finally {
 			cleanUp();
 		}
-
+		
 		return orderItems;
 	}
 	

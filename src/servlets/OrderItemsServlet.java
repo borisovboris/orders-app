@@ -141,7 +141,7 @@ public class OrderItemsServlet extends HttpServlet {
 	    OrderItemsService orderItemsService = new OrderItemsService();
 	    orderItemsService.createOrderItem(orderId, productId, quantity);
 	    
-		response.sendRedirect(request.getContextPath() + "/OrderItemss");
+		response.sendRedirect(request.getContextPath() + "/OrderItems");
 	}
 	
 	protected void doPut(HttpServletRequest request, HttpServletResponse response)
@@ -165,8 +165,8 @@ public class OrderItemsServlet extends HttpServlet {
 		int orderId = helper.stringToInteger(request.getParameter("orderId"));
 		OrderItemsService orderItemsService = new OrderItemsService();
 		
-		List<OrderItems> orderItemsList = orderItemsService.searchOrderItems(orderId);
-	    request.setAttribute("orderItemsList", orderItemsList);
+		List<OrderItems> orderItemList = orderItemsService.searchOrderItems(orderId);
+	    request.setAttribute("orderItemList", orderItemList);
 
 	    RequestDispatcher reqDispatcher = getServletConfig().getServletContext().getRequestDispatcher(
 	    "/views/orderItems/allOrderItems.jsp");		

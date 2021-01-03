@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>OrderItems</title>
+<title>All order items</title>
 <link rel="stylesheet" type="text/css" href="css/core.css">
 <link rel="stylesheet" type="text/css" href="css/container.css">
 <link rel="stylesheet" type="text/css" href="css/buttons.css">
@@ -23,20 +23,20 @@
 	<nav>
         <div class="left">
             <div class="buttons-container">
-                <a class="button nav-button uppercase" href="<%=baseUrl%>/OrderedItems">
+                <a class="button nav-button uppercase" href="<%=baseUrl%>/OrderItems">
                 	Ordered Items
                 </a>
                 <a class="button nav-button uppercase" href="<%=baseUrl%>/Orders">
                 	Orders
                 </a>
-                <a class="button nav-button uppercase" href="<%=baseUrl%>/OrderItems">
-                	OrderItems
+                <a class="button nav-button uppercase" href="<%=baseUrl%>/Products">
+                	Products
                 </a>
-                <a class="button nav-button uppercase" href="<%=baseUrl%>/OrderItems">
-                	OrderItems
+                <a class="button nav-button uppercase" href="<%=baseUrl%>/Users">
+                	Users
                 </a>
-                <a class="button nav-button uppercase" href="<%=baseUrl%>/OrderItems">
-                	OrderItems
+                <a class="button nav-button uppercase" href="<%=baseUrl%>/Merchants">
+                	Merchants
                 </a>
                 <a class="button nav-button uppercase" href="<%=baseUrl%>/Countries">
                 	Countries
@@ -51,20 +51,20 @@
                 </div>
 
                 <div id="dropdown-content">
-                    <a class="button dropdown-button uppercase" href="<%=baseUrl%>/OrderedItems">
+                    <a class="button dropdown-button uppercase" href="<%=baseUrl%>/OrderItems">
                     	Ordered Items
                     </a>
                     <a class="button dropdown-button uppercase" href="<%=baseUrl%>/Orders">
                     	Orders
                     </a>
-                    <a class="button dropdown-button uppercase" href="<%=baseUrl%>/OrderItems">
-                    	OrderItems
+                    <a class="button dropdown-button uppercase" href="<%=baseUrl%>/Products">
+                    	Products
                     </a>
-                    <a class="button dropdown-button uppercase" href="<%=baseUrl%>/OrderItems">
-                    	OrderItems
+                    <a class="button dropdown-button uppercase" href="<%=baseUrl%>/Users">
+                    	Users
                     </a>
-                    <a class="button dropdown-button uppercase" href="<%=baseUrl%>/OrderItems">
-                    	OrderItems
+                    <a class="button dropdown-button uppercase" href="<%=baseUrl%>/Merchants">
+                    	Merchants
                     </a>
                     <a class="button dropdown-button uppercase" href="<%=baseUrl%>/Countries">
                     	Countries
@@ -84,7 +84,7 @@
         <div class="container">
             <div id="search-container" class="clearfix">
             <form action="<%= baseUrl %>/OrderItems?search=1" method="post">
-            	<input id="searchbar" name="orderId" placeholder="Search orderItem name">
+            	<input id="searchbar" name="orderId" placeholder="Search for order ID">
                 <input id="search-button" class="button baby-blue" type="submit" value="Search">
             </form>   
             </div>

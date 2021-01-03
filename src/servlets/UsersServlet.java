@@ -168,10 +168,10 @@ public class UsersServlet extends HttpServlet {
 	}
 	
 	protected void searchUser(HttpServletRequest request, HttpServletResponse response) {
-		int userId = helper.stringToInteger(request.getParameter("userId"));
+		String userFullName = request.getParameter("userFullName");
 		UserService userService = new UserService();
 		
-		List<User> userList = userService.searchUsers(userId);
+		List<User> userList = userService.searchUsers(userFullName);
 	    request.setAttribute("userList", userList);
 
 	    RequestDispatcher reqDispatcher = getServletConfig().getServletContext().getRequestDispatcher(

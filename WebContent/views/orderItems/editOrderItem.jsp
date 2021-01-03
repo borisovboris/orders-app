@@ -6,7 +6,7 @@
 <head>
 	<% String baseUrl = request.getContextPath(); %>
 	<meta charset="ISO-8859-1">
-	<title>Add country</title>
+	<title>Edit order item</title>
 	<link rel="stylesheet" type="text/css" href="<%= baseUrl %>/css/core.css">
 	<link rel="stylesheet" type="text/css" href="<%= baseUrl %>/css/container.css">
 	<link rel="stylesheet" type="text/css" href="<%= baseUrl %>/css/buttons.css">
@@ -24,21 +24,20 @@
 			    id="orderId"
 			    value="<%= orderItem.getOrderId() %>"
 			    class="input-field" disabled/>
-			    
-			    <h3 class="lighter">Product ID</h3>        
+			        
 			    <input type="number" name="productId" 
 			    id="productId"
 			    value="<%= orderItem.getProductId() %>"
 			    class="input-field" disabled hidden="true"/>
 			    
 			   <h3 class="lighter">Product name</h3>        
-			    <input type="number" name="productName" 
+			    <input type="text" name="productName" 
 			    id="productName"
 			    value="<%= orderItem.getProductName() %>"
 			    class="input-field" disabled/>
 			    
 			    <h3 class="lighter">Quantity</h3>        
-			    <input type="text" name="quantity" 
+			    <input type="number" name="quantity" 
 			    id="quantity"
 			    value="<%= orderItem.getQuantity() %>"
 			    class="input-field"/>

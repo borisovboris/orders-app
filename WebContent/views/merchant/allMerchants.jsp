@@ -23,7 +23,7 @@
 	<nav>
         <div class="left">
             <div class="buttons-container">
-                <a class="button nav-button uppercase" href="<%=baseUrl%>/OrderedItems">
+                <a class="button nav-button uppercase" href="<%=baseUrl%>/OrderItems">
                 	Ordered Items
                 </a>
                 <a class="button nav-button uppercase" href="<%=baseUrl%>/Orders">
@@ -32,8 +32,8 @@
                 <a class="button nav-button uppercase" href="<%=baseUrl%>/Products">
                 	Products
                 </a>
-                <a class="button nav-button uppercase" href="<%=baseUrl%>/Merchants">
-                	Merchants
+                <a class="button nav-button uppercase" href="<%=baseUrl%>/Users">
+                	Users
                 </a>
                 <a class="button nav-button uppercase" href="<%=baseUrl%>/Merchants">
                 	Merchants
@@ -51,7 +51,7 @@
                 </div>
 
                 <div id="dropdown-content">
-                    <a class="button dropdown-button uppercase" href="<%=baseUrl%>/OrderedItems">
+                    <a class="button dropdown-button uppercase" href="<%=baseUrl%>/OrderItems">
                     	Ordered Items
                     </a>
                     <a class="button dropdown-button uppercase" href="<%=baseUrl%>/Orders">
@@ -60,8 +60,8 @@
                     <a class="button dropdown-button uppercase" href="<%=baseUrl%>/Products">
                     	Products
                     </a>
-                    <a class="button dropdown-button uppercase" href="<%=baseUrl%>/Merchants">
-                    	Merchants
+                    <a class="button dropdown-button uppercase" href="<%=baseUrl%>/Users">
+                    	Users
                     </a>
                     <a class="button dropdown-button uppercase" href="<%=baseUrl%>/Merchants">
                     	Merchants
@@ -84,7 +84,7 @@
         <div class="container">
             <div id="search-container" class="clearfix">
             <form action="<%= baseUrl %>/Merchants?search=1" method="post">
-            	<input id="searchbar" name="merchantName" placeholder="Search merchant name">
+            	<input id="searchbar" name="merchantName" placeholder="Search for merchant name">
                 <input id="search-button" class="button baby-blue" type="submit" value="Search">
             </form>   
             </div>
