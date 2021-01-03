@@ -32,10 +32,14 @@
 			    id="userEmail"
 			    class="input-field"/>
 			    
-			    <h3 class="lighter">Gender</h3>        
-			    <input type="text" name="userGender" 
-			    id="userGender"
-			    class="input-field"/>
+			    <h3 class="lighter">
+			    	<label for="userGender">Gender:</label>
+			    </h3>
+			       
+			    <select id="userGender" name="userGender" class="select-css button">
+			    	<option value="Male">Male</option>
+			    	<option value="Female">Female</option>
+			    </select>
 			    
 			    <h3 class="lighter">Date of birth</h3>        
 			    <input type="text" name="userDateOfBirth" 
@@ -48,7 +52,7 @@
 				
 				<%List<Country> countryList = (List<Country>)request.getAttribute("countryList"); %>
 				
-				<select name="userCountryCode" class="select-css">
+				<select id="userCountryCode" name="userCountryCode" class="select-css button">
 				<%for (Country country : countryList) { %>
 				  <option value="<%= country.getCountryCode()%>"><%= country.getCountryName() %></option>
 				  <% } %>

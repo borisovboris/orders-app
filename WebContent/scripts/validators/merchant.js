@@ -1,12 +1,9 @@
 const form = document.getElementById('form');
-const countryCode = document.getElementById('countryCode');
-const countryName = document.getElementById('countryName');
-const continentName = document.getElementById('continentName');
+const merchantName = document.getElementById('merchantName');
+const merchantAdminId = document.getElementById('merchantAdminId');
+const merchantCountryCode = document.getElementById('merchantCountryCode');
 const errorContainer = document.getElementById('error-container');
 
- console.log("COUNTRY");
- 
- 
 let errors = [];
 
 form.onsubmit = validateFields;
@@ -15,20 +12,21 @@ function validateFields(event) {
     errorContainer.innerHTML = "";
     let errors = [];
 
-    if(countryCode.value === "" | countryName.value === "" | continentName.value === "") {
+    if(merchantName.value === "" | merchantAdminId.value === "" | merchantCountryCode.value === "") {
         errors.push("Please fill out all fields");
     } else {
-        if(!isNumber(countryCode.value)) {
-            errors.push("Country code must be a number");
+       if(isNumber(merchantName.value)) {
+            errors.push("Merchant name should be written in letters");
+        }
+        
+        if(!isNumber(merchantAdminId.value)) {
+            errors.push("Merchant admin ID must be a number");
+        }
+        
+         if(!isNumber(merchantCountryCode.value)) {
+            errors.push("Merchant country code must be a number");
         }
     
-        if(isNumber(countryName.value)) {
-            errors.push("Country name should be written in letters");
-        }
-    
-        if(isNumber(continentName.value)) {
-            errors.push("Continent name should be written in letters");
-        }
     }
 
 

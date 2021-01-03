@@ -30,12 +30,12 @@
 			    
 			    
 			     <h3 class="lighter">
-			    	<label for="merchantAdminId">Country:</label>
+			    	<label for="merchantAdminId">Admin:</label>
 			    </h3>
 				
 				<%List<User> userList = (List<User>)request.getAttribute("userList"); %>
 				
-				<select name="merchantAdminId" id= "merchantAdminId" class="select-css">
+				<select name="merchantAdminId" id= "merchantAdminId" class="select-css button">
 				<%for (User user : userList) { %>
 				  <option value="<%= user.getId()%>"><%= user.getFullName() %></option>
 				  <% } %>
@@ -49,7 +49,7 @@
 				
 				<%List<Country> countryList = (List<Country>)request.getAttribute("countryList"); %>
 				
-				<select name="merchantCountryCode" id="merchantCountryCode" class="select-css">
+				<select name="merchantCountryCode" id="merchantCountryCode" class="select-css button">
 				<%for (Country country : countryList) { %>
 				  <option value="<%= country.getCountryCode()%>"><%= country.getCountryName() %></option>
 				  <% } %>

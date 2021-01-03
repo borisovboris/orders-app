@@ -41,7 +41,7 @@
 			    class="input-field"/>
 			      
 			   <h3 class="lighter">Price</h3>        
-			    <input type="text" name="productPrice" 
+			    <input type="number" min="1" name="productPrice" 
 			    id="productPrice"
 			    class="input-field"/>
 			    

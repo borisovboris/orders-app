@@ -18,7 +18,7 @@
 			<form action="<%= baseUrl %>/Countries" method="post" id="form">
 				
 				<h3 class="lighter">Country code</h3>        
-			    <input type="text" name="countryCode" 
+			    <input type="number" name="countryCode" 
 			    id="countryCode"
 			    class="input-field"/>
 			    

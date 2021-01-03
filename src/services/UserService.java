@@ -22,7 +22,7 @@ public class UserService {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
-			statement.executeUpdate("drop table if exists user");
+//			statement.executeUpdate("drop table if exists user");
 			statement.executeUpdate("create table if not exists user (" 
 					+ "id INTEGER PRIMARY KEY AUTOINCREMENT," 
 					+ "FULL_NAME TEXT NOT NULL,"
@@ -152,10 +152,10 @@ public class UserService {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
-			statement.executeUpdate("insert into orders "
+			statement.executeUpdate("insert into user "
 					+ "(full_name, email, gender, dob, country_code, created_at) "
 					+ " values ( '" + userFullName + "', '" + userEmail + "', '" + userGender
-					+ "', " + "'" + dob + "' , " + userCountryCode + "'" + createdAt + "');");
+					+ "', " + "'" + dob + "', " + userCountryCode + "," +"'" + createdAt + "');");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

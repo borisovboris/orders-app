@@ -37,7 +37,7 @@
 			    class="input-field" disabled/>
 			    
 			    <h3 class="lighter">Quantity</h3>        
-			    <input type="number" name="quantity" 
+			    <input type="number" min="1" value="1" name="quantity" 
 			    id="quantity"
 			    value="<%= orderItem.getQuantity() %>"
 			    class="input-field"/>
@@ -55,6 +55,6 @@
 		</div>
 	</div>
 	
-	<script type="text/javascript" src="<%= baseUrl %>/scripts/validators/orderItems.js"></script>
+	<script type="text/javascript" src="<%= baseUrl %>/scripts/validators/orderItem.js"></script>
 </body>
 </html>

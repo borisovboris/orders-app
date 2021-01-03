@@ -52,8 +52,8 @@
 				</select>
 			      
 			   <h3 class="lighter">Quantity</h3>        
-			    <input type="number" name="quantity" 
-			    id="quantity"
+			    <input type="number" min="1" name="quantity" 
+			    id="quantity" value="1"
 			    class="input-field"/>
 			    
 			    

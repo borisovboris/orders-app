@@ -8,7 +8,7 @@
 <head>
 <% String baseUrl = request.getContextPath(); %>
 <meta charset="ISO-8859-1">
-<title>Edit Country</title>
+<title>Edit order</title>
 <link rel="stylesheet" type="text/css" href="<%= baseUrl %>/css/core.css">
 <link rel="stylesheet" type="text/css" href="<%= baseUrl %>/css/container.css">
 <link rel="stylesheet" type="text/css" href="<%= baseUrl %>/css/buttons.css">
@@ -22,19 +22,23 @@
 			<h1 class="lighter">Edit order</h1>
 	
 			<form action="<%= baseUrl %>/Orders?edit=1" method="post" id="form">
-				
-				 <h3 class="lighter">Order ID</h3>        
+				    
 			    <input type="text" name="orderId" 
 			    id="orderId"
 			    value="<%= order.getId() %>"
-			    class="input-field" hidden/>
+			    class="input-field" hidden="true"/>
+			    
+			     <h3 class="lighter">Order ID</h3>
+			     <input type="text" 
+			     value="<%= order.getId() %>"
+			    class="input-field" disabled/>    
 				
 			    
 			    <h3 class="lighter">
 			    	<label for="orderStatus">Status: </label>
 			    </h3>
 			    
-			    <select id="orderStatus" name="orderStatus" class="select-css">
+			    <select id="orderStatus" name="orderStatus" class="select-css button">
 			    	<%if(order.getStatus().equals("Open")) { %>
 				    	<option value="Open" selected>Open</option>
 				    	<option value="Closed">Closed</option>

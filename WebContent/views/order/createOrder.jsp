@@ -27,17 +27,19 @@
 			    
 			    <%List<User> userList = (List<User>)request.getAttribute("userList"); %>
 				
-				<select id="orderUserId" name="orderUserId" class="select-css">
+				<select id="orderUserId" name="orderUserId" class="select-css button">
 				<%for (User user : userList) { %>
 				  <option value="<%= user.getId()%>"><%= user.getFullName() %></option>
 				  <% } %>
 				</select>
 				
-				<h3 class="lighter">Order status</h3>        
-			    <input type="text" name="orderStatus" 
-			    id="orderStatus"
-			    value="Open"
-			    class="input-field"/ disabled>		    
+				<h3 class="lighter">
+					<label>Status: </label>
+				</h3>     
+				<select name="orderStatus" id="orderStatus" class="select-css button">
+					<option value="Open" selected>Open</option>
+				</select>   
+		
 			    
 			     <div id="error-container">     
     			</div>	

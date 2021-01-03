@@ -20,7 +20,7 @@ public class OrderService {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
-			statement.executeUpdate("DROP TABLE IF EXISTS ORDERS");
+//			statement.executeUpdate("DROP TABLE IF EXISTS ORDERS");
 			statement.executeUpdate("CREATE TABLE IF NOT EXISTS ORDERS ("
 					+ "id INTEGER PRIMARY KEY AUTOINCREMENT,"
 					+ "order_status TEXT NOT NULL,"
@@ -87,7 +87,8 @@ public class OrderService {
 			rs = statement.executeQuery("SELECT o.id, o.user_id, o.order_status, o.created_at, u.full_name "
 					+ "FROM orders AS o "
 					+ "INNER JOIN user AS u "
-					+ "ON o.user_id = u.id");
+					+ "ON o.user_id = u.id "
+					+ "WHERE o.id =" + orderId);
 			
 			order.setId(rs.getInt("id"));
 			order.setStatus(rs.getString("order_status"));

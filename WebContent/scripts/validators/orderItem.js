@@ -1,12 +1,9 @@
 const form = document.getElementById('form');
-const countryCode = document.getElementById('countryCode');
-const countryName = document.getElementById('countryName');
-const continentName = document.getElementById('continentName');
+const orderId = document.getElementById('orderId');
+const productId = document.getElementById('productId');
+const quantity = document.getElementById('quantity');
 const errorContainer = document.getElementById('error-container');
 
- console.log("COUNTRY");
- 
- 
 let errors = [];
 
 form.onsubmit = validateFields;
@@ -15,20 +12,21 @@ function validateFields(event) {
     errorContainer.innerHTML = "";
     let errors = [];
 
-    if(countryCode.value === "" | countryName.value === "" | continentName.value === "") {
+    if(orderId.value === "" | productId.value === "" | quantity.value === "") {
         errors.push("Please fill out all fields");
     } else {
-        if(!isNumber(countryCode.value)) {
-            errors.push("Country code must be a number");
+        if(!isNumber(orderId.value)) {
+            errors.push("Order ID must be a number");
+        }
+        
+         if(!isNumber(productId.value)) {
+            errors.push("Product ID must be a number");
+        }
+        
+         if(!isNumber(quantity.value)) {
+            errors.push("Quantity must be a number");
         }
     
-        if(isNumber(countryName.value)) {
-            errors.push("Country name should be written in letters");
-        }
-    
-        if(isNumber(continentName.value)) {
-            errors.push("Continent name should be written in letters");
-        }
     }
 
 

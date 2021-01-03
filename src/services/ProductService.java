@@ -20,7 +20,7 @@ public class ProductService {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
-			statement.executeUpdate("DROP TABLE IF EXISTS PRODUCT");
+//			statement.executeUpdate("DROP TABLE IF EXISTS PRODUCT");
 			statement.executeUpdate("CREATE TABLE IF NOT EXISTS PRODUCT("
 					+ "  ID INTEGER PRIMARY KEY AUTOINCREMENT,"
 					+ "  MERCHANT_ID INTEGER NOT NULL,"
