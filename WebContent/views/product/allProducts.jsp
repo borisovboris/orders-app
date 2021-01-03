@@ -131,6 +131,11 @@
 				<a href="<%= baseUrl %>/Products" class="light-red" id="back-button">Back</a>
 			<% }%>
 			
+			<% String toSearch = request.getParameter("search"); %>
+			<% if(toSearch != null) { %>
+				<a href="<%= baseUrl %>/Countries" class="light-red" id="back-button">Back</a>
+			<%	} %>
+			
         </div>
     </div>
     

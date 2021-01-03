@@ -126,9 +126,14 @@
 				</table>
 			<% } else { %>
 				<h1 class="lighter">No countries to show</h1>
-				<a href="<%= baseUrl %>/Countries" class="light-red" id="back-button">Back</a>
+				
 			<% }%>
 			
+			
+			<% String toSearch = request.getParameter("search"); %>
+			<% if(toSearch != null) { %>
+				<a href="<%= baseUrl %>/Countries" class="light-red" id="back-button">Back</a>
+			<%	} %>
         </div>
     </div>
     

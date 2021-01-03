@@ -125,7 +125,7 @@ public class UsersServlet extends HttpServlet {
 		String userDateOfBirth = request.getParameter("userDateOfBirth");
 		System.out.print(request.getParameter("userCountryCode") + " AAAAA");
 		int userCountryCode = helper.stringToInteger(request.getParameter("userCountryCode"));
-		String createdAt = request.getParameter("createdAt");
+		String userCreatedAt = helper.getDateNow();
 	    
 	    UserService userService = new UserService();
 	    userService.createUser(
@@ -134,7 +134,7 @@ public class UsersServlet extends HttpServlet {
 				userGender,
 				userDateOfBirth,
 				userCountryCode,
-				createdAt
+				userCreatedAt
 	    );
 	    
 		response.sendRedirect(request.getContextPath() + "/Users");

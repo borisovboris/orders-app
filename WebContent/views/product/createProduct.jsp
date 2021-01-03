@@ -53,13 +53,6 @@
 			   		<option value="In stock">In stock</option>
 			   		<option value="Out of stock">Out of stock</option>
 			   </select>     
-			   
-			    
-			    <input type="text" name="productCreatedAt" 
-			    id="productCreatedAt"
-			    class="input-field" 
-			    value="2020"
-			    hidden="true"/>
 			    
 			     <div id="error-container">     
     			</div>	

@@ -54,10 +54,6 @@
 				  <% } %>
 				</select>
 			    
-			    <input type="text" name="userCreatedAt" 
-			    id="userCreatedAt"
-			    class="input-field" hidden="true"/>
-			    
 			     <div id="error-container">     
     			</div>	
 			    

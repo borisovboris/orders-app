@@ -20,7 +20,7 @@ public class OrderItemsService {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
-			//statement.executeUpdate("DROP TABLE IF EXISTS ORDER_ITEMS");
+			statement.executeUpdate("DROP TABLE IF EXISTS ORDER_ITEMS");
 			statement.executeUpdate("CREATE TABLE IF NOT EXISTS order_items ("
 					+ "ORDER_ID INTEGER NOT NULL,"
 					+ "PRODUCT_ID INTEGER NOT NULL,"

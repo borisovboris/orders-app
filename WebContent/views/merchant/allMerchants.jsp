@@ -126,8 +126,12 @@
 				</table>
 			<% } else { %>
 				<h1 class="lighter">No merchants to show</h1>
-				<a href="<%= baseUrl %>/Merchants" class="light-red" id="back-button">Back</a>
 			<% }%>
+			
+			<% String toSearch = request.getParameter("search"); %>
+			<% if(toSearch != null) { %>
+				<a href="<%= baseUrl %>/Merchants" class="light-red" id="back-button">Back</a>
+			<%	} %>
 			
         </div>
     </div>

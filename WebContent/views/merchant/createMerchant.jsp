@@ -55,10 +55,6 @@
 				  <% } %>
 				</select>
 			    
-			    <input type="text" name="merchantCreatedAt" 
-			    id="merchantCreatedAt"
-			    class="input-field" hidden="true"/>
-			    
 			     <div id="error-container">     
     			</div>	
 			    

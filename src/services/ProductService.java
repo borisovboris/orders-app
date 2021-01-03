@@ -20,6 +20,7 @@ public class ProductService {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
+			statement.executeUpdate("DROP TABLE IF EXISTS PRODUCT");
 			statement.executeUpdate("CREATE TABLE IF NOT EXISTS PRODUCT("
 					+ "  ID INTEGER PRIMARY KEY AUTOINCREMENT,"
 					+ "  MERCHANT_ID INTEGER NOT NULL,"
@@ -33,9 +34,9 @@ public class ProductService {
 			rs = statement.executeQuery("SELECT COUNT(*) AS rowcount FROM product");
 			if (rs.getInt("rowcount") == 0) {
 				statement.executeUpdate("insert into product (merchant_id, name, price, product_status, created_at) "
-						+ "values (1, 'Shovel', 45, 'In stock', '03.03.2014')");
+						+ "values (1, 'Shovel', 45, 'In stock', '03-03-2014')");
 				statement.executeUpdate("insert into product (merchant_id, name, price, product_status, created_at) "
-						+ "values (2, 'Bread', 2, 'Out of stock', '31.12.2014')");
+						+ "values (2, 'Bread', 2, 'Out of stock', '31-12-2014')");
 			}
 
 		} catch (Exception e) {
@@ -182,12 +183,12 @@ public class ProductService {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
-			rs = statement.executeQuery("SELECT m.name as merchant_name, "
-					+ "p.name as product_name, p.price, p.product_status "
+			rs = statement.executeQuery("SELECT m.merchant_name, "
+					+ "p.name as product_name, p.id, p.price, p.product_status "
 					+ "FROM product AS p "
 					+ "INNER JOIN merchant AS m "
 					+ "ON p.merchant_id = m.id "
-					+ "WHERE p.name =" + "'" + productName + "';");
+					+ "WHERE LOWER(p.name) LIKE " + "LOWER('%" + productName + "%');");
 			if(rs == null) {
 				return null;
 			}

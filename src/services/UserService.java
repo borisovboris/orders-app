@@ -22,7 +22,7 @@ public class UserService {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
-			//statement.executeUpdate("drop table if exists user");
+			statement.executeUpdate("drop table if exists user");
 			statement.executeUpdate("create table if not exists user (" 
 					+ "id INTEGER PRIMARY KEY AUTOINCREMENT," 
 					+ "FULL_NAME TEXT NOT NULL,"
@@ -39,10 +39,10 @@ public class UserService {
 			if (rs.getInt("rowcount") == 0) {
 				statement.executeUpdate(
 				"insert into user (full_name, email, gender, dob, country_code, created_at) values"
-				+ "('Ivan Petkov', 'ivan@gmail.com', 'Male', '18.11.1999', 359, '12.10.2010'),"
-				+ "('Emil Cholakov', 'emil@abv.bg', 'Male', '04.06.1988', 34, '09.08.2000'),"
-				+ "('Veska Popova', 'veska@gmail.com', 'Female', '10.09.1995', 34, '06.10.2005'),"
-				+ "('Atanas Mihailov', 'atanas@gmail.com', 'Male', '12.12.1980', 34, '10.07.2001');");	
+				+ "('Ivan Petkov', 'ivan@gmail.com', 'Male', '18-11-1999', 359, '12-10-2010'),"
+				+ "('Emil Cholakov', 'emil@abv.bg', 'Male', '04-06-1988', 34, '09-08-2000'),"
+				+ "('Veska Popova', 'veska@gmail.com', 'Female', '10-09-1995', 34, '06-10-2005'),"
+				+ "('Atanas Mihailov', 'atanas@gmail.com', 'Male', '12-12-1980', 34, '10-07-2001');");	
 			}
 
 		} catch (Exception e) {
@@ -57,7 +57,6 @@ public class UserService {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
-		//	rs = statement.executeQuery("select * from user");
 			rs = statement.executeQuery("SELECT u.id, u.full_name, u.email, u.gender, c.country_name "
 					+ "FROM user AS u "
 					+ "INNER JOIN country AS c "

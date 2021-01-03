@@ -128,7 +128,7 @@ public class ProductsServlet extends HttpServlet {
 	    String productName = request.getParameter("productName");
 	    int productPrice = helper.stringToInteger(request.getParameter("productPrice"));
 	    String productStatus = request.getParameter("productStatus");
-	    String productCreatedAt = request.getParameter("productCreatedAt");
+	    String productCreatedAt = helper.getDateNow();
 	    
 	    ProductService productService = new ProductService();
 	    productService.createProduct(productMerchantId, productName, productPrice, productStatus, productCreatedAt);

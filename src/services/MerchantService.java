@@ -35,10 +35,10 @@ public class MerchantService {
 			if (rs.getInt("rowcount") == 0) {
 				statement.executeUpdate("insert into merchant (merchant_name, admin_id, country_code,"
 						+ " created_at) "
-						+ "values ('Walmart', 1, 359, '21.01.2012')");
+						+ "values ('Walmart', 1, 359, '21-01-2012')");
 				statement.executeUpdate("insert into merchant (merchant_name, admin_id, country_code,"
 						+ " created_at) "
-						+ "values ('DHL', 2, 359, '17.04.2018')");
+						+ "values ('DHL', 2, 359, '17-04-2018')");
 			}
 
 		} catch (Exception e) {
@@ -129,7 +129,7 @@ public class MerchantService {
 					+ "FROM merchant AS m "
 					+ "INNER JOIN user AS u ON m.admin_id = u.id "
 					+ "INNER JOIN country AS c ON m.country_code = c.country_code "
-					+ "WHERE m.merchant_name = " + "'" + merchantName + "';" 
+					+ "WHERE LOWER(m.merchant_name) LIKE " + "LOWER('%" + merchantName + "%');" 
 			);
 			
 			if(rs == null) {

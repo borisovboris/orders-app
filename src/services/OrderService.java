@@ -20,7 +20,7 @@ public class OrderService {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
-			//statement.executeUpdate("DROP TABLE IF EXISTS ORDERS");
+			statement.executeUpdate("DROP TABLE IF EXISTS ORDERS");
 			statement.executeUpdate("CREATE TABLE IF NOT EXISTS ORDERS ("
 					+ "id INTEGER PRIMARY KEY AUTOINCREMENT,"
 					+ "order_status TEXT NOT NULL,"
@@ -32,9 +32,9 @@ public class OrderService {
 			rs = statement.executeQuery("SELECT COUNT(*) AS rowcount FROM ORDERS");
 			if (rs.getInt("rowcount") == 0) {
 				statement.executeUpdate("insert into orders (user_id, order_status, created_at) "
-						+ "values (1, 'Open', '21.01.2009')");
+						+ "values (1, 'Open', '21-01-2009')");
 				statement.executeUpdate("insert into orders (user_id, order_status, created_at) "
-						+ "values (2, 'Open', '22.03.2012')");
+						+ "values (2, 'Open', '22-03-2012')");
 			}
 
 		} catch (Exception e) {

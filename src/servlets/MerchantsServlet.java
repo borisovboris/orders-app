@@ -139,7 +139,7 @@ public class MerchantsServlet extends HttpServlet {
 	    String merchantName = request.getParameter("merchantName");
 		int merchantAdminId = helper.stringToInteger(request.getParameter("merchantAdminId"));
 		int merchantCountryCode = helper.stringToInteger(request.getParameter("merchantCountryCode"));
-	    String merchantCreatedAt = request.getParameter("merchantCreatedAt");
+	    String merchantCreatedAt = helper.getDateNow();
 	    
 	    MerchantService merchantService = new MerchantService();
 	    merchantService.createMerchant(merchantName, merchantAdminId, merchantCountryCode, merchantCreatedAt);

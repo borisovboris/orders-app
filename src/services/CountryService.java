@@ -20,7 +20,7 @@ public class CountryService {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
-			//statement.executeUpdate("drop table if exists country");
+			statement.executeUpdate("drop table if exists country");
 			statement.executeUpdate("create table if not exists country (" 
 					+ "country_code int primary key," 
 					+ "country_name unqiue string,"
@@ -144,8 +144,8 @@ public class CountryService {
 		try {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
-			rs = statement.executeQuery("select * from country WHERE LOWER"
-					+ "(country_name) LIKE " + "LOWER('%" + countryName + "%');");
+			rs = statement.executeQuery("select * from country WHERE "
+					+ "LOWER(country_name) LIKE " + "LOWER('%" + countryName + "%');");
 			if(rs == null) {
 				return null;
 			}

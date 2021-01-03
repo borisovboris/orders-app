@@ -124,7 +124,7 @@ public class OrdersServlet extends HttpServlet {
 		
 		int orderUserId = helper.stringToInteger(request.getParameter("orderUserId"));
 	    String orderStatus = request.getParameter("orderStatus");
-	    String orderCreatedAt = request.getParameter("orderCreatedAt");
+	    String orderCreatedAt = helper.getDateNow();
 	    
 	    OrderService orderService = new OrderService();
 	    orderService.createOrder(orderUserId, orderStatus, orderCreatedAt);

@@ -37,12 +37,7 @@
 			    <input type="text" name="orderStatus" 
 			    id="orderStatus"
 			    value="Open"
-			    class="input-field"/ disabled>
-			          
-			    <input type="text" name="orderCreatedAt" 
-			    id="orderCreatedAt"
-			    class="input-field" hidden="true"/>
-			    
+			    class="input-field"/ disabled>		    
 			    
 			     <div id="error-container">     
     			</div>	
