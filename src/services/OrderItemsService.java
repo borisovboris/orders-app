@@ -161,9 +161,9 @@ public class OrderItemsService {
 					+ "FROM order_items AS oi "
 					+ "INNER JOIN  product AS p ON oi.product_id = p.id "
 					+ " WHERE oi.order_id = " + orderId + ";");
-//			if(rs == null) {
-//				return null;
-//			}
+			if(rs == null) {
+				return null;
+			}
 		} catch (Exception e) {
 			System.out.print("error searchOrderItems");
 			e.printStackTrace();

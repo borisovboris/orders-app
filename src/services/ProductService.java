@@ -25,7 +25,7 @@ public class ProductService {
 					+ "  ID INTEGER PRIMARY KEY AUTOINCREMENT,"
 					+ "  MERCHANT_ID INTEGER NOT NULL,"
 					+ "  NAME TEXT NOT NULL,"
-					+ "  PRICE INT NOT NULL,"
+					+ "  PRICE REAL NOT NULL,"
 					+ "  PRODUCT_STATUS TEXT NOT NULL,"
 					+ "  CREATED_AT TEXT NOT NULL,"
 					+ " FOREIGN KEY (MERCHANT_ID) REFERENCES merchant(id) ON DELETE CASCADE ON UPDATE CASCADE"
@@ -67,7 +67,7 @@ public class ProductService {
 				product.setId(rs.getInt("id"));
 				product.setMerchantName(rs.getString("merchant_name"));
 				product.setName(rs.getString("product_name"));
-				product.setPrice(rs.getInt("price"));
+				product.setPrice(rs.getFloat("price"));
 				product.setStatus(rs.getString("product_status"));
 				products.add(product);
 			}
@@ -94,7 +94,7 @@ public class ProductService {
 			product.setId(rs.getInt("id"));
 			product.setMerchantId(rs.getInt("merchant_id"));
 			product.setName(rs.getString("name"));
-			product.setPrice(rs.getInt("price"));
+			product.setPrice(rs.getFloat("price"));
 			product.setStatus(rs.getString("product_status"));
 			product.setCreatedAt(rs.getString("created_at"));
 			
@@ -124,7 +124,7 @@ public class ProductService {
 	public void createProduct(
 				int productMerchantId,
 				String productName,
-				int productPrice,
+				float productPrice,
 				String productStatus,
 				String productCreatedAt
 		) {
@@ -157,7 +157,7 @@ public class ProductService {
 			int productId,
 			int productMerchantId,
 			String productName,
-			int productPrice,
+			float productPrice,
 			String productStatus
 	) {
 		try {
@@ -202,7 +202,7 @@ public class ProductService {
 				Product product = new Product();
 				product.setMerchantName(rs.getString("merchant_name"));
 				product.setName(rs.getString("product_name"));
-				product.setPrice(rs.getInt("price"));
+				product.setPrice(rs.getFloat("price"));
 				product.setStatus(rs.getString("product_status"));
 				products.add(product);
 			}

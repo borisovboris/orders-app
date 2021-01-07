@@ -55,7 +55,7 @@
 			    class="input-field"/>
 			      
 			   <h3 class="lighter">Price</h3>        
-			    <input type="number" min="1" name="productPrice" 
+			    <input type="number" min="1" step="0.01" name="productPrice" 
 			    id="productPrice"
 			    value="<%= product.getPrice() %>"
 			    class="input-field"/>

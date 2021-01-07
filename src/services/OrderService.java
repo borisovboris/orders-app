@@ -21,6 +21,7 @@ public class OrderService {
 			connection = new DBConnection().getConnection();
 			statement = connection.createStatement();
 //			statement.executeUpdate("DROP TABLE IF EXISTS ORDERS");
+			  
 			statement.executeUpdate("CREATE TABLE IF NOT EXISTS ORDERS ("
 					+ "id INTEGER PRIMARY KEY AUTOINCREMENT,"
 					+ "order_status TEXT NOT NULL,"

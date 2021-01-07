@@ -4,7 +4,7 @@ public class Product {
 	private int _id;
 	private int _merchantId;
 	private String _name;
-	private int _price;
+	private float _price;
 	private String _status;
 	private String _createdAt;
 	private String _merchantName;
@@ -49,11 +49,11 @@ public class Product {
 	
 	/* ----------------------------------------------------------------------- */
 	
-	public void setPrice(int price) {
+	public void setPrice(float price) {
 		_price = price;
 	}
 	
-	public int getPrice() {
+	public float getPrice() {
 		return _price;
 	}
 	

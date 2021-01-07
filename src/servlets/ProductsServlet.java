@@ -126,7 +126,7 @@ public class ProductsServlet extends HttpServlet {
 		
 	    int productMerchantId = helper.stringToInteger(request.getParameter("productMerchantId"));
 	    String productName = request.getParameter("productName");
-	    int productPrice = helper.stringToInteger(request.getParameter("productPrice"));
+	    float productPrice = Float.parseFloat(request.getParameter("productPrice"));
 	    String productStatus = request.getParameter("productStatus");
 	    String productCreatedAt = helper.getDateNow();
 	    
@@ -143,7 +143,7 @@ public class ProductsServlet extends HttpServlet {
 		int productId = helper.stringToInteger(request.getParameter("productId"));
 	    int productMerchantId = helper.stringToInteger(request.getParameter("productMerchantId"));
 	    String productName = request.getParameter("productName");
-	    int productPrice = helper.stringToInteger(request.getParameter("productPrice"));
+	    float productPrice = Float.parseFloat(request.getParameter("productPrice"));
 	    String productStatus = request.getParameter("productStatus");
 	    
 	    ProductService productService = new ProductService();
