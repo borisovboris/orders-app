@@ -30,8 +30,8 @@ public class CountryService {
 
 			rs = statement.executeQuery("SELECT COUNT(*) AS rowcount FROM country");
 			if (rs.getInt("rowcount") == 0) {
-				statement.executeUpdate("insert into country values (359, 'Bulgaria', 'Europe')");
-				statement.executeUpdate("insert into country values (34, 'Spain', 'Europe')");
+//				statement.executeUpdate("insert into country values (359, 'Bulgaria', 'Europe')");
+//				statement.executeUpdate("insert into country values (34, 'Spain', 'Europe')");
 			}
 
 		} catch (Exception e) {

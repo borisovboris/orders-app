@@ -43,7 +43,7 @@
                 </a>
             </div>
 
-            <div class="dropdown">
+            <div id="dropdown">
                 <div id="dropdown-menu" class="button">
                     <div class="menu-bar"></div>
                     <div class="menu-bar"></div>

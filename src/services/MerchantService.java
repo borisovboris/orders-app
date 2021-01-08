@@ -33,12 +33,12 @@ public class MerchantService {
 			
 			rs = statement.executeQuery("SELECT COUNT(*) AS rowcount FROM MERCHANT");
 			if (rs.getInt("rowcount") == 0) {
-				statement.executeUpdate("insert into merchant (merchant_name, admin_id, country_code,"
-						+ " created_at) "
-						+ "values ('Walmart', 1, 359, '21-01-2012')");
-				statement.executeUpdate("insert into merchant (merchant_name, admin_id, country_code,"
-						+ " created_at) "
-						+ "values ('DHL', 2, 359, '17-04-2018')");
+//				statement.executeUpdate("insert into merchant (merchant_name, admin_id, country_code,"
+//						+ " created_at) "
+//						+ "values ('Walmart', 1, 359, '21-01-2012')");
+//				statement.executeUpdate("insert into merchant (merchant_name, admin_id, country_code,"
+//						+ " created_at) "
+//						+ "values ('DHL', 2, 359, '17-04-2018')");
 			}
 
 		} catch (Exception e) {

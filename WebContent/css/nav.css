@@ -68,7 +68,7 @@ footer {
 	border-radius: 4px;
 }
 
-.dropdown {
+#dropdown {
 	position: relative;
 	display: inline-block;
 }
@@ -121,7 +121,7 @@ footer {
 	.right {
 		width: 10%;
 	}
-	.dropdown {
+	#dropdown {
 		display: none;
 	}
 }

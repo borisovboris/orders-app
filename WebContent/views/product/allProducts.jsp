@@ -43,7 +43,7 @@
                 </a>
             </div>
 
-            <div class="dropdown">
+            <div id="dropdown">
                 <div id="dropdown-menu" class="button">
                     <div class="menu-bar"></div>
                     <div class="menu-bar"></div>
@@ -128,7 +128,6 @@
 				</table>
 			<% } else { %>
 				<h1 class="lighter">No products to show</h1>
-				<a href="<%= baseUrl %>/Products" class="light-red" id="back-button">Back</a>
 			<% }%>
 			
 			<% String toSearch = request.getParameter("search"); %>

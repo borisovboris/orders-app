@@ -19,20 +19,32 @@
 			
 			<form action="<%= baseUrl %>/OrderItems?edit=1" method="post" id="form">
 				
-				<h3 class="lighter">Order ID</h3>        
-			    <input type="number" name="orderId" 
+				<h3 class="lighter">Order ID</h3>    
+				
+				<input type="number" name="orderId" 
 			    id="orderId"
 			    value="<%= orderItem.getOrderId() %>"
-			    class="input-field" disabled/>
-			        
+			    class="input-field" hidden/>
+				    
+			    <input type="number" 
+			    value="<%= orderItem.getOrderId() %>"
+			    class="input-field"/ disabled>
+			    
 			    <input type="number" name="productId" 
 			    id="productId"
 			    value="<%= orderItem.getProductId() %>"
-			    class="input-field" disabled hidden="true"/>
+			    class="input-field" hidden="true"/>
+			        
 			    
-			   <h3 class="lighter">Product name</h3>        
+			   <h3 class="lighter">Product name</h3>  
+			   
 			    <input type="text" name="productName" 
 			    id="productName"
+			    value="<%= orderItem.getProductName() %>"
+			    class="input-field" hidden/>   
+			   
+			      
+			    <input type="text" 
 			    value="<%= orderItem.getProductName() %>"
 			    class="input-field" disabled/>
 			    
@@ -45,7 +57,7 @@
 			     <div id="error-container">     
     			</div>	
 			    
-			    <input type="submit" name="submit" value="Add" class="baby-blue button" 
+			    <input type="submit" name="submit" value="Update" class="baby-blue button" 
 			    id="submit-entity"/>
 				
 				

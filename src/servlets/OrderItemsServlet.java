@@ -68,8 +68,8 @@ public class OrderItemsServlet extends HttpServlet {
 		
 		if(toDelete != null) {
 			if(toDelete.equals("1")) {
-				int orderId = helper.stringToInteger(request.getParameter("orderId"));
-				int productId = helper.stringToInteger(request.getParameter("productId"));
+				int orderId = helper.stringToInteger(request.getParameter("order_id"));
+				int productId = helper.stringToInteger(request.getParameter("product_id"));
 				
 				deleteOrderItem(orderId, productId);
 				response.sendRedirect(request.getContextPath() + "/OrderItems");

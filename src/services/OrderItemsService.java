@@ -32,10 +32,10 @@ public class OrderItemsService {
 			
 			rs = statement.executeQuery("SELECT COUNT(*) AS rowcount FROM order_items");
 			if (rs.getInt("rowcount") == 0) {
-				statement.executeUpdate("insert into order_items (order_id, product_id, quantity) "
-						+ "values (1, 1, 20)");
-				statement.executeUpdate("insert into order_items (order_id, product_id, quantity) "
-						+ "values (2, 2, 22)");
+//				statement.executeUpdate("insert into order_items (order_id, product_id, quantity) "
+//						+ "values (1, 1, 20)");
+//				statement.executeUpdate("insert into order_items (order_id, product_id, quantity) "
+//						+ "values (2, 2, 22)");
 			}
 
 		} catch (Exception e) {
