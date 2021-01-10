@@ -10,36 +10,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.Country;
 import models.Order;
 import models.OrderItems;
 import models.Product;
-import models.User;
-import services.CountryService;
 import services.OrderItemsService;
 import services.OrderService;
 import services.ProductService;
-import services.UserService;
 import utilities.Helper;
 
-/**
- * Servlet implementation class OrderedItems
- */
 @WebServlet("/OrderItems")
 public class OrderItemsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Helper helper;
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+   
     public OrderItemsServlet() {
         super();
         helper = new Helper();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Helper helper = new Helper();
 		String toDelete = request.getParameter("delete");
@@ -99,21 +88,13 @@ public class OrderItemsServlet extends HttpServlet {
 		List<OrderItems> orderItemList = orderItemsService.getOrderItems();
 	    request.setAttribute("orderItemList", orderItemList);
 
-	    //Servlet JSP communication
 	    RequestDispatcher reqDispatcher = getServletConfig().getServletContext().getRequestDispatcher(
 	    "/views/orderItems/allOrderItems.jsp"
 	    );
-	    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
-	    response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
-	    response.setDateHeader("Expires", 0); // Proxies.
+	 
 	    reqDispatcher.forward(request,response);
-		return;
-		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String toEdit = request.getParameter("edit");
 		String toSearch = request.getParameter("search");

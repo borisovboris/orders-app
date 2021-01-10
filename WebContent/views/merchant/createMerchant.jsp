@@ -35,11 +35,17 @@
 				
 				<%List<User> userList = (List<User>)request.getAttribute("userList"); %>
 				
-				<select name="merchantAdminId" id= "merchantAdminId" class="select-css button">
-				<%for (User user : userList) { %>
-				  <option value="<%= user.getId()%>"><%= user.getFullName() %></option>
-				  <% } %>
+				<% if(userList.size() == 0) { %>
+					<div><p class="error-message">Create a user before creating a merchant</p></div>
+				<% } else { %>
+					<select name="merchantAdminId" id= "merchantAdminId" class="select-css button">
+					<%for (User user : userList) { %>
+				 		 <option value="<%= user.getId()%>"><%= user.getFullName() %></option>
+				  	<% } %>
 				</select>
+				<% } %>
+				
+			
 				
 				
 			    

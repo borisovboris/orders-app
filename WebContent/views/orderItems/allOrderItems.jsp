@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>All order items</title>
+<title>Order items</title>
 <link rel="stylesheet" type="text/css" href="css/core.css">
 <link rel="stylesheet" type="text/css" href="css/container.css">
 <link rel="stylesheet" type="text/css" href="css/buttons.css">
@@ -24,7 +24,7 @@
         <div class="left">
             <div class="buttons-container">
                 <a class="button nav-button uppercase" href="<%=baseUrl%>/OrderItems">
-                	Ordered Items
+                	Order items
                 </a>
                 <a class="button nav-button uppercase" href="<%=baseUrl%>/Orders">
                 	Orders
@@ -52,7 +52,7 @@
 
                 <div id="dropdown-content">
                     <a class="button dropdown-button uppercase" href="<%=baseUrl%>/OrderItems">
-                    	Ordered Items
+                    	Order items
                     </a>
                     <a class="button dropdown-button uppercase" href="<%=baseUrl%>/Orders">
                     	Orders
@@ -96,6 +96,7 @@
 			<%List<OrderItems> orderItemList = (List<OrderItems>)request.getAttribute("orderItemList"); %>
 			
 			<% if(orderItemList.size() != 0) { %>
+			<div id="table-container">
 				<table id="data-table">
 				    <tr>
 				    	<th>Order ID</th>
@@ -126,6 +127,7 @@
 	
 			    
 				</table>
+			</div>
 			<% } else { %>
 				<h1 class="lighter">No order items to show</h1>
 			<% }%>

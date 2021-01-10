@@ -12,24 +12,29 @@ function validateFields(event) {
     errorContainer.innerHTML = "";
     let errors = [];
 
-    if(orderId.value === "" | productId.value === "" | quantity.value === "") {
-        errors.push("Please fill out all fields");
-    } else {
-        if(!isNumber(orderId.value)) {
-            errors.push("Order ID must be a number");
-        }
-        
-         if(!isNumber(productId.value)) {
-            errors.push("Product ID must be a number");
-        }
-        
-         if(!isNumber(quantity.value)) {
-            errors.push("Quantity must be a number");
-        }
+	if(orderId == null | productId == null | quantity == null) {
+		errors.push("Cannot create order item without any products or items");
+	} else {
+	
+			if(orderId.value === "" | productId.value === "" | quantity.value === "") {
+	        	errors.push("Please fill out all fields");
+	    	} else {
+	        if(!isNumber(orderId.value)) {
+	            errors.push("Order ID must be a number");
+	        }
+	        
+	         if(!isNumber(productId.value)) {
+	            errors.push("Product ID must be a number");
+	        }
+	        
+	         if(!isNumber(quantity.value)) {
+	            errors.push("Quantity must be a number");
+	        }
     
-    }
-
-
+    	}
+		
+	}
+   
 
     if(errors.length > 0) {
         let errorString = "";

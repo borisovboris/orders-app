@@ -2,7 +2,6 @@
 	font-family: Arial, Helvetica, sans-serif;
 	border-collapse: collapse;
 	width: 100%;
-	overflow-x: scroll;
 }
 
 
@@ -36,4 +35,8 @@
 	margin-right: 5px;
 	margin-top: 3px;
 	margin-bottom: 3px;
+}
+
+#table-container {
+	overflow-x:auto;
 }

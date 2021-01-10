@@ -29,21 +29,11 @@ public class UserService {
 					+ "EMAIL TEXT UNIQUE NOT NULL," 
 					+ "GENDER TEXT NOT NULL,"
 					+ "DOB TEXT NOT NULL,"
-					+ "COUNTRY_CODE INT,"
+					+ "COUNTRY_CODE INT NOT NULL,"
 					+ "CREATED_AT TEXT NOT NULL,"
-					+ "FOREIGN KEY (COUNTRY_CODE) REFERENCES COUNTRY(COUNTRY_CODE) ON UPDATE CASCADE"
+					+ "FOREIGN KEY (COUNTRY_CODE) REFERENCES COUNTRY(COUNTRY_CODE) ON DELETE CASCADE"
 					+ ");"
 			);
-
-			rs = statement.executeQuery("SELECT COUNT(*) AS rowcount FROM user");
-			if (rs.getInt("rowcount") == 0) {
-//				statement.executeUpdate(
-//				"insert into user (full_name, email, gender, dob, country_code, created_at) values"
-//				+ "('Ivan Petkov', 'ivan@gmail.com', 'Male', '18-11-1999', 359, '12-10-2010'),"
-//				+ "('Emil Cholakov', 'emil@abv.bg', 'Male', '04-06-1988', 34, '09-08-2000'),"
-//				+ "('Veska Popova', 'veska@gmail.com', 'Female', '10-09-1995', 34, '06-10-2005'),"
-//				+ "('Atanas Mihailov', 'atanas@gmail.com', 'Male', '12-12-1980', 34, '10-07-2001');");	
-			}
 
 		} catch (Exception e) {
 			e.printStackTrace();

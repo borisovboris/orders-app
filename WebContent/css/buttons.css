@@ -2,6 +2,7 @@
 	background-color: #89cff0;
 	padding: 7px 10px;
 	border-radius: 30px;
+	display: inline-block;
 }
 
 .baby-blue:hover {
@@ -12,6 +13,7 @@
 	background-color: #FF6666;
 	padding: 7px 10px;
 	border-radius: 30px;
+	display: inline-block;
 }
 
 .light-red:hover {

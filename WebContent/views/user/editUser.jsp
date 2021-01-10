@@ -11,7 +11,7 @@
 <head>
 <% String baseUrl = request.getContextPath(); %>
 <meta charset="ISO-8859-1">
-<title>Edit Country</title>
+<title>Edit user</title>
 <link rel="stylesheet" type="text/css" href="<%= baseUrl %>/css/core.css">
 <link rel="stylesheet" type="text/css" href="<%= baseUrl %>/css/container.css">
 <link rel="stylesheet" type="text/css" href="<%= baseUrl %>/css/buttons.css">

@@ -24,7 +24,7 @@
         <div class="left">
             <div class="buttons-container">
                 <a class="button nav-button uppercase" href="<%=baseUrl%>/OrderItems">
-                	Ordered Items
+                	Order items
                 </a>
                 <a class="button nav-button uppercase" href="<%=baseUrl%>/Orders">
                 	Orders
@@ -52,7 +52,7 @@
 
                 <div id="dropdown-content">
                     <a class="button dropdown-button uppercase" href="<%=baseUrl%>/OrderItems">
-                    	Ordered Items
+                    	Order items
                     </a>
                     <a class="button dropdown-button uppercase" href="<%=baseUrl%>/Orders">
                     	Orders
@@ -96,6 +96,7 @@
 			<%List<Order> orderList = (List<Order>)request.getAttribute("orderList"); %>
 			
 			<% if(orderList.size() != 0) { %>
+			<div id="table-container">
 				<table id="data-table">
 				    <tr>
 				    	<th>Order ID</th>
@@ -126,6 +127,7 @@
 	
 			    
 				</table>
+			</div>
 			<% } else { %>
 				<h1 class="lighter">No orders to show</h1>
 			<% }%>

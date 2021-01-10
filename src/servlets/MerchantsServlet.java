@@ -18,24 +18,17 @@ import services.MerchantService;
 import services.UserService;
 import utilities.Helper;
 
-/**
- * Servlet implementation class MerchantsServlet
- */
 @WebServlet("/Merchants")
 public class MerchantsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Helper helper;
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    
     public MerchantsServlet() {
         super();
         helper = new Helper();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Helper helper = new Helper();
 		String toDelete = request.getParameter("delete");
@@ -101,21 +94,13 @@ public class MerchantsServlet extends HttpServlet {
 		List<Merchant> merchantList = merchantService.getMerchants();
 	    request.setAttribute("merchantList", merchantList);
 
-	    //Servlet JSP communication
 	    RequestDispatcher reqDispatcher = getServletConfig().getServletContext().getRequestDispatcher(
 	    "/views/merchant/allMerchants.jsp"
 	    );
-	    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
-	    response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
-	    response.setDateHeader("Expires", 0); // Proxies.
 	    reqDispatcher.forward(request,response);
-		return;
-		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String toEdit = request.getParameter("edit");
 		String toSearch = request.getParameter("search");
@@ -133,8 +118,6 @@ public class MerchantsServlet extends HttpServlet {
 				return;
 			}
 		}
-		
-		
 		
 	    String merchantName = request.getParameter("merchantName");
 		int merchantAdminId = helper.stringToInteger(request.getParameter("merchantAdminId"));

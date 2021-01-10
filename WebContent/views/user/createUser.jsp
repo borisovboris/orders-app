@@ -52,11 +52,16 @@
 				
 				<%List<Country> countryList = (List<Country>)request.getAttribute("countryList"); %>
 				
+				<% if(countryList.size() == 0) { %>
+					<div><p class="error-message">Create a country before creating a user</p></div>
+				<% } else { %>
 				<select id="userCountryCode" name="userCountryCode" class="select-css button">
-				<%for (Country country : countryList) { %>
-				  <option value="<%= country.getCountryCode()%>"><%= country.getCountryName() %></option>
-				  <% } %>
+					<%for (Country country : countryList) { %>
+			  			<option value="<%= country.getCountryCode()%>"><%= country.getCountryName() %></option>
+			  		<% } %>
 				</select>
+				<% } %>
+				
 			    
 			     <div id="error-container">     
     			</div>	

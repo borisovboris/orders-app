@@ -27,16 +27,8 @@ public class OrderService {
 					+ "order_status TEXT NOT NULL,"
 					+ "user_id INTEGER NOT NULL,"
 					+ "created_at TEXT NOT NULL,"
-					+ "FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE ON UPDATE CASCADE"
+					+ "FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE"
 					+ ");");
-			
-			rs = statement.executeQuery("SELECT COUNT(*) AS rowcount FROM ORDERS");
-			if (rs.getInt("rowcount") == 0) {
-//				statement.executeUpdate("insert into orders (user_id, order_status, created_at) "
-//						+ "values (1, 'Open', '21-01-2009')");
-//				statement.executeUpdate("insert into orders (user_id, order_status, created_at) "
-//						+ "values (2, 'Open', '22-03-2012')");
-			}
 
 		} catch (Exception e) {
 			e.printStackTrace();

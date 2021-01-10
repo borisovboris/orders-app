@@ -28,16 +28,8 @@ public class ProductService {
 					+ "  PRICE REAL NOT NULL,"
 					+ "  PRODUCT_STATUS TEXT NOT NULL,"
 					+ "  CREATED_AT TEXT NOT NULL,"
-					+ " FOREIGN KEY (MERCHANT_ID) REFERENCES merchant(id) ON DELETE CASCADE ON UPDATE CASCADE"
+					+ " FOREIGN KEY (MERCHANT_ID) REFERENCES merchant(id) ON DELETE CASCADE"
 					+ ");");
-			
-			rs = statement.executeQuery("SELECT COUNT(*) AS rowcount FROM product");
-			if (rs.getInt("rowcount") == 0) {
-//				statement.executeUpdate("insert into product (merchant_id, name, price, product_status, created_at) "
-//						+ "values (1, 'Shovel', 45, 'In stock', '03-03-2014')");
-//				statement.executeUpdate("insert into product (merchant_id, name, price, product_status, created_at) "
-//						+ "values (2, 'Bread', 2, 'Out of stock', '31-12-2014')");
-			}
 
 		} catch (Exception e) {
 			e.printStackTrace();

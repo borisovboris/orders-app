@@ -15,32 +15,40 @@ function validateFields(event) {
 	
     errorContainer.innerHTML = "";
     let errors = [];
-	
-    if(userFullName.value === "" | userEmail.value === "" | userGender.value === "" | userDateOfBirth.value === "" 
-    | userCountryCode.value === "") {
-        errors.push("Please fill out all fields");
-    } else {
-    	if(isNumber(userFullName.value)) {
-            errors.push("Full name should be written in letters");
-        }
-        
-        if(isNumber(userEmail.value)) {
-            errors.push("Email should be written in letters");
-        }
-        
-        if(isNumber(userGender.value)) {
-            errors.push("Gender name should be written in letters");
-        }
-        
-        if(isNumber(userDateOfBirth.value)) {
-            errors.push("Date of birth should not be a single number");
-        }
-        
-        if(!isNumber(userCountryCode.value)) {
-            errors.push("Country code must be a number");
-        }
     
+	
+	
+	 if(userFullName == null | userEmail == null | userGender == null | userDateOfBirth == null 
+    | userCountryCode == null) {
+        errors.push("There are no existing countries or there are missing input fields");
+    } else {
+    	if(userFullName.value === "" | userEmail.value === "" | userGender.value === "" | userDateOfBirth.value === "" 
+	    	| userCountryCode.value === "") {
+	        	errors.push("Please fill out all fields");
+	    } else {
+	    	if(isNumber(userFullName.value)) {
+	            errors.push("Full name should be written in letters");
+	        }
+	        
+	        if(isNumber(userEmail.value)) {
+	            errors.push("Email should be written in letters");
+	        }
+	        
+	        if(isNumber(userGender.value)) {
+	            errors.push("Gender name should be written in letters");
+	        }
+	        
+	        if(isNumber(userDateOfBirth.value)) {
+	            errors.push("Date of birth should not be a single number");
+	        }
+	        
+	        if(!isNumber(userCountryCode.value)) {
+	            errors.push("Country code must be a number");
+	        }
+	    
+	    }
     }
+	
 
 
 

@@ -29,11 +29,16 @@
 				
 				<%List<Merchant> merchantList = (List<Merchant>)request.getAttribute("merchantList"); %>
 				
+				<% if(merchantList.size() == 0) { %>
+					<div><p class="error-message">Create a merchant before creating a product</p></div>
+				<% } else { %>
 				<select name="productMerchantId" id= "productMerchantId" class="select-css button">
-				<%for (Merchant merchant : merchantList) { %>
-				  <option value="<%= merchant.getId()%>"><%= merchant.getMerchantName() %></option>
-				  <% } %>
+					<%for (Merchant merchant : merchantList) { %>
+				  		<option value="<%= merchant.getId()%>"><%= merchant.getMerchantName() %></option>
+				  	<% } %>
 				</select>
+				<% } %>
+				
 			
 				<h3 class="lighter">Product name</h3>        
 			    <input type="text" name="productName" 

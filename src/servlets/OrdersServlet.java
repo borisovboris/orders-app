@@ -10,32 +10,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.Country;
 import models.Order;
 import models.User;
 import services.OrderService;
 import services.UserService;
 import utilities.Helper;
 
-/**
- * Servlet implementation class OrdersServlet
- */
 @WebServlet("/Orders")
 public class OrdersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Helper helper;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public OrdersServlet() {
         super();
         helper = new Helper();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Helper helper = new Helper();
 		String toDelete = request.getParameter("delete");
@@ -74,7 +64,6 @@ public class OrdersServlet extends HttpServlet {
 				Order order = orderService.getOrder(orderId);
 			    request.setAttribute("order", order);
 
-			    //Servlet JSP communication
 			    RequestDispatcher reqDispatcher = getServletConfig().getServletContext().getRequestDispatcher(
 			    "/views/order/editOrder.jsp"
 			    );
@@ -87,7 +76,6 @@ public class OrdersServlet extends HttpServlet {
 		List<Order> orderList = orderService.getOrders();
 	    request.setAttribute("orderList", orderList);
 
-	    //Servlet JSP communication
 	    RequestDispatcher reqDispatcher = getServletConfig().getServletContext().getRequestDispatcher(
 	    "/views/order/allOrders.jsp"
 	    );
@@ -98,9 +86,6 @@ public class OrdersServlet extends HttpServlet {
 		return;
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String toEdit = request.getParameter("edit");
 		String toSearch = request.getParameter("search");
@@ -119,9 +104,7 @@ public class OrdersServlet extends HttpServlet {
 			}
 		}
 		
-		
-		
-		
+			
 		int orderUserId = helper.stringToInteger(request.getParameter("orderUserId"));
 	    String orderStatus = request.getParameter("orderStatus");
 	    String orderCreatedAt = helper.getDateNow();

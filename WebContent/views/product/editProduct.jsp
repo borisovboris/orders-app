@@ -11,7 +11,7 @@
 <head>
 <% String baseUrl = request.getContextPath(); %>
 <meta charset="ISO-8859-1">
-<title>Edit Country</title>
+<title>Edit product</title>
 <link rel="stylesheet" type="text/css" href="<%= baseUrl %>/css/core.css">
 <link rel="stylesheet" type="text/css" href="<%= baseUrl %>/css/container.css">
 <link rel="stylesheet" type="text/css" href="<%= baseUrl %>/css/buttons.css">
@@ -25,8 +25,7 @@
 			<h1 class="lighter">Edit product</h1>
 	
 			<form action="<%= baseUrl %>/Products?edit=1" method="post" id="form">   
-			
-				<h3 class="lighter">ID</h3>        
+			    
 			    <input type="text" name="productId" 
 			    id="productId"
 			    value="<%= product.getId() %>"
@@ -37,6 +36,10 @@
 			    </h3>
 				
 				<%List<Merchant> merchantList = (List<Merchant>)request.getAttribute("merchantList"); %>
+				
+				<% if(merchantList.size() == 0) { %>
+					<div><p class="error-message">Create a merchant before creating a product</p></div>
+				<% } %>
 				
 				<select name="productMerchantId" id= "productMerchantId" class="select-css button">
 				<%for (Merchant merchant : merchantList) { %>

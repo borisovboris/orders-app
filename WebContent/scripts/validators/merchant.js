@@ -4,30 +4,34 @@ const merchantAdminId = document.getElementById('merchantAdminId');
 const merchantCountryCode = document.getElementById('merchantCountryCode');
 const errorContainer = document.getElementById('error-container');
 
-let errors = [];
-
 form.onsubmit = validateFields;
 
 function validateFields(event) {
     errorContainer.innerHTML = "";
     let errors = [];
-
-    if(merchantName.value === "" | merchantAdminId.value === "" | merchantCountryCode.value === "") {
-        errors.push("Please fill out all fields");
+	
+	if(merchantName == null | merchantAdminId == null | merchantCountryCode == null) {
+        errors.push("There are no existing users or there are missing input fields");
     } else {
-       if(isNumber(merchantName.value)) {
-            errors.push("Merchant name should be written in letters");
-        }
-        
-        if(!isNumber(merchantAdminId.value)) {
-            errors.push("Merchant admin ID must be a number");
-        }
-        
-         if(!isNumber(merchantCountryCode.value)) {
-            errors.push("Merchant country code must be a number");
-        }
-    
+	    if(merchantName.value === "" | merchantAdminId.value === "" | merchantCountryCode.value === "") {
+	        errors.push("Please fill out all fields");
+	    } else {
+	       if(isNumber(merchantName.value)) {
+	            errors.push("Merchant name should be written in letters");
+	        }
+	        
+	        if(!isNumber(merchantAdminId.value)) {
+	            errors.push("Merchant admin ID must be a number");
+	        }
+	        
+	         if(!isNumber(merchantCountryCode.value)) {
+	            errors.push("Merchant country code must be a number");
+	        }
+	    
+	    }
     }
+	
+
 
 
 

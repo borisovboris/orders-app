@@ -16,25 +16,16 @@ import services.CountryService;
 import services.UserService;
 import utilities.Helper;
 
-/**
- * Servlet implementation class UsersServlet
- */
 @WebServlet("/Users")
 public class UsersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Helper helper;
 	
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public UsersServlet() {
         super();
         helper = new Helper();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Helper helper = new Helper();
 		String toDelete = request.getParameter("delete");
@@ -74,7 +65,7 @@ public class UsersServlet extends HttpServlet {
 			    request.setAttribute("user", user);
 			    List<Country> countryList = countryService.getCountries();
 			    request.setAttribute("countryList", countryList);
-			    //Servlet JSP communication
+
 			    RequestDispatcher reqDispatcher = getServletConfig().getServletContext().getRequestDispatcher(
 			    "/views/user/editUser.jsp"
 			    );
@@ -86,20 +77,14 @@ public class UsersServlet extends HttpServlet {
 		List<User> userList = userService.getUsers();
 	    request.setAttribute("userList", userList);
 
-	    //Servlet JSP communication
 	    RequestDispatcher reqDispatcher = getServletConfig().getServletContext().getRequestDispatcher(
 	    "/views/user/allUsers.jsp"
 	    );
-	    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
-	    response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
-	    response.setDateHeader("Expires", 0); // Proxies.
+	  
 	    reqDispatcher.forward(request,response);
 		return;
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String toEdit = request.getParameter("edit");
 		String toSearch = request.getParameter("search");

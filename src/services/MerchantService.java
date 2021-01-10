@@ -25,21 +25,12 @@ public class MerchantService {
 					+ "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
 					+ "MERCHANT_NAME TEXT UNIQUE NOT NULL,"
 					+ "ADMIN_ID INTEGER NOT NULL,"
-					+ "COUNTRY_CODE INT,"
+					+ "COUNTRY_CODE INT NOT NULL,"
 					+ "CREATED_AT TEXT NOT NULL,"
-					+ "FOREIGN KEY (ADMIN_ID) REFERENCES user(ID) ON DELETE CASCADE ON UPDATE CASCADE,"
-					+ "FOREIGN KEY (COUNTRY_CODE) REFERENCES  country(COUNTRY_CODE) ON UPDATE CASCADE"
+					+ "FOREIGN KEY (ADMIN_ID) REFERENCES user(ID) ON DELETE CASCADE,"
+					+ "FOREIGN KEY (COUNTRY_CODE) REFERENCES country(COUNTRY_CODE) ON DELETE CASCADE"
 					+ " );");
 			
-			rs = statement.executeQuery("SELECT COUNT(*) AS rowcount FROM MERCHANT");
-			if (rs.getInt("rowcount") == 0) {
-//				statement.executeUpdate("insert into merchant (merchant_name, admin_id, country_code,"
-//						+ " created_at) "
-//						+ "values ('Walmart', 1, 359, '21-01-2012')");
-//				statement.executeUpdate("insert into merchant (merchant_name, admin_id, country_code,"
-//						+ " created_at) "
-//						+ "values ('DHL', 2, 359, '17-04-2018')");
-			}
 
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -16,24 +16,16 @@ import services.MerchantService;
 import services.ProductService;
 import utilities.Helper;
 
-/**
- * Servlet implementation class ProductsServlet
- */
 @WebServlet("/Products")
 public class ProductsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Helper helper;
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+   
     public ProductsServlet() {
         super();
         helper = new Helper();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Helper helper = new Helper();
 		String toDelete = request.getParameter("delete");
@@ -101,9 +93,6 @@ public class ProductsServlet extends HttpServlet {
 		return;
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String toEdit = request.getParameter("edit");
 		String toSearch = request.getParameter("search");
@@ -121,8 +110,6 @@ public class ProductsServlet extends HttpServlet {
 				return;
 			}
 		}
-		
-
 		
 	    int productMerchantId = helper.stringToInteger(request.getParameter("productMerchantId"));
 	    String productName = request.getParameter("productName");

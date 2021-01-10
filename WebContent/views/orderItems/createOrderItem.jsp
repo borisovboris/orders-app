@@ -12,7 +12,7 @@
 <head>
 	<% String baseUrl = request.getContextPath(); %>
 	<meta charset="ISO-8859-1">
-	<title>Add orderItem</title>
+	<title>Add order item</title>
 	<link rel="stylesheet" type="text/css" href="<%= baseUrl %>/css/core.css">
 	<link rel="stylesheet" type="text/css" href="<%= baseUrl %>/css/container.css">
 	<link rel="stylesheet" type="text/css" href="<%= baseUrl %>/css/buttons.css">
@@ -30,11 +30,16 @@
 				
 				<%List<Order> orderList = (List<Order>)request.getAttribute("orderList"); %>
 				
+				<% if(orderList.size() == 0) { %>
+					<div><p class="error-message">Create an order before creating an order item</p></div>
+				<% } else { %>
 				<select name="orderId" id= "orderId" class="select-css button">
-				<%for (Order order : orderList) { %>
-				  <option value="<%= order.getId()%>"><%= order.getId() %></option>
-				  <% } %>
+					<%for (Order order : orderList) { %>
+				  		<option value="<%= order.getId()%>"><%= order.getId() %></option>
+				  	<% } %>
 				</select>
+				<% } %>
+			
 				
 				
 				
@@ -45,11 +50,16 @@
 				
 				<%List<Product> productList = (List<Product>)request.getAttribute("productList"); %>
 				
+				<% if(productList.size() == 0) { %>
+					<div><p class="error-message">Create a product before creating an order item</p></div>
+				<% } else { %>
 				<select name="productId" id= "productId" class="select-css button">
-				<%for (Product product : productList) { %>
-				  <option value="<%= product.getId()%>"><%= product.getName() %></option>
-				  <% } %>
+					<%for (Product product : productList) { %>
+				  		<option value="<%= product.getId()%>"><%= product.getName() %></option>
+				  	<% } %>
 				</select>
+				<% } %>
+							
 			      
 			   <h3 class="lighter">Quantity</h3>        
 			    <input type="number" min="1" name="quantity" 

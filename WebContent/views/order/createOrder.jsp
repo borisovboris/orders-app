@@ -26,12 +26,17 @@
 			    </h3>
 			    
 			    <%List<User> userList = (List<User>)request.getAttribute("userList"); %>
-				
-				<select id="orderUserId" name="orderUserId" class="select-css button">
-				<%for (User user : userList) { %>
-				  <option value="<%= user.getId()%>"><%= user.getFullName() %></option>
-				  <% } %>
+			    
+			    <% if(userList.size() == 0) { %>
+					<div><p class="error-message">Create a user before creating an order</p></div>
+				<% }  else { %>
+					<select id="orderUserId" name="orderUserId" class="select-css button">
+					<%for (User user : userList) { %>
+				  		<option value="<%= user.getId()%>"><%= user.getFullName() %></option>
+				  	<% } %>
 				</select>
+				<% } %>
+				
 				
 				<h3 class="lighter">
 					<label>Status: </label>

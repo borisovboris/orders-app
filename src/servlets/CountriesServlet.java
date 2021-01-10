@@ -14,36 +14,27 @@ import models.Country;
 import services.CountryService;
 import utilities.Helper;
 
-/**
- * Servlet implementation class Countries
- */
+
 @WebServlet("/Countries")
 public class CountriesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Helper helper;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public CountriesServlet() {
 		super();
 		helper = new Helper();
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String toDelete = request.getParameter("delete");
 		String toEdit = request.getParameter("edit");
-		int countryCode;
 		CountryService countryService = new CountryService();
 		
 		if(toDelete != null) {
 			if(toDelete.equals("1")) {
-				countryCode = helper.stringToInteger(request.getParameter("country_code"));
+				int countryCode = helper.stringToInteger(request.getParameter("country_code"));
 				deleteCountry(countryCode);
 				response.sendRedirect(request.getContextPath() + "/Countries");
 				return;
@@ -52,11 +43,10 @@ public class CountriesServlet extends HttpServlet {
 		
 		if(toEdit != null) {
 			if(toEdit.equals("1")) {
-				countryCode = helper.stringToInteger(request.getParameter("country_code"));
+				int countryCode = helper.stringToInteger(request.getParameter("country_code"));
 				Country country = countryService.getCountry(countryCode);
 			    request.setAttribute("country", country);
 
-			    //Servlet JSP communication
 			    RequestDispatcher reqDispatcher = getServletConfig().getServletContext().getRequestDispatcher(
 			    "/views/country/editCountry.jsp"
 			    );
@@ -65,26 +55,19 @@ public class CountriesServlet extends HttpServlet {
 			}
 		}
 		
-		
+		// If there is no "search" or "delete" query parameter, it means that we want to
+		// list all countries
+
 		List<Country> countryList = countryService.getCountries();
 	    request.setAttribute("countryList", countryList);
 
-	    //Servlet JSP communication
 	    RequestDispatcher reqDispatcher = getServletConfig().getServletContext().getRequestDispatcher(
 	    "/views/country/allCountries.jsp"
-	    );
-	    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
-	    response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
-	    response.setDateHeader("Expires", 0); // Proxies.
-	    reqDispatcher.forward(request,response);
-		return;
-		
+	    );  
+	    reqDispatcher.forward(request,response);	
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String toEdit = request.getParameter("edit");
@@ -103,8 +86,6 @@ public class CountriesServlet extends HttpServlet {
 				return;
 			}
 		}
-		
-		
 		
 		
 		int countryCode = helper.stringToInteger(request.getParameter("countryCode"));
@@ -129,7 +110,6 @@ public class CountriesServlet extends HttpServlet {
 	    response.sendRedirect(request.getContextPath() + "/Countries");
 	}
 	
-	//  http://www.site.com?param1=1&param2=2
 	
 	protected void deleteCountry(int countryCode) {
 		CountryService countryService = new CountryService();

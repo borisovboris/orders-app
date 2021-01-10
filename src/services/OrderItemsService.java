@@ -25,18 +25,10 @@ public class OrderItemsService {
 					+ "ORDER_ID INTEGER NOT NULL,"
 					+ "PRODUCT_ID INTEGER NOT NULL,"
 					+ "QUANTITY INT NOT NULL,"
-					+ "FOREIGN KEY (ORDER_ID) REFERENCES ORDERS(ID) ON UPDATE CASCADE ON DELETE CASCADE,"
-					+ "FOREIGN KEY (PRODUCT_ID) REFERENCES PRODUCT(ID) ON UPDATE CASCADE ON DELETE CASCADE,"
+					+ "FOREIGN KEY (ORDER_ID) REFERENCES ORDERS(ID) ON DELETE CASCADE,"
+					+ "FOREIGN KEY (PRODUCT_ID) REFERENCES PRODUCT(ID) ON DELETE CASCADE,"
 					+ "PRIMARY KEY(ORDER_ID, PRODUCT_ID) "
 					+ ");");
-			
-			rs = statement.executeQuery("SELECT COUNT(*) AS rowcount FROM order_items");
-			if (rs.getInt("rowcount") == 0) {
-//				statement.executeUpdate("insert into order_items (order_id, product_id, quantity) "
-//						+ "values (1, 1, 20)");
-//				statement.executeUpdate("insert into order_items (order_id, product_id, quantity) "
-//						+ "values (2, 2, 22)");
-			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
