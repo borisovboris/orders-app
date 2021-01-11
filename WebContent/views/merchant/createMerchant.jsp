@@ -74,6 +74,6 @@
 		</div>
 	</div>
 	
-	<script type="text/javascript" src="<%= baseUrl %>/scripts/validators/merchant.js"></script>
+	<script type="text/javascript" src="<%= baseUrl %>/scripts/validators/create/merchant.js"></script>
 </body>
 </html>

@@ -45,6 +45,6 @@
 		</div>
 	</div>
 	
-	<script type="text/javascript" src="<%= baseUrl %>/scripts/validators/country.js"></script>
+	<script type="text/javascript" src="<%= baseUrl %>/scripts/validators/create/country.js"></script>
 </body>
 </html>

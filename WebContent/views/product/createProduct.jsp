@@ -72,6 +72,6 @@
 		</div>
 	</div>
 	
-	<script type="text/javascript" src="<%= baseUrl %>/scripts/validators/product.js"></script>
+	<script type="text/javascript" src="<%= baseUrl %>/scripts/validators/create/product.js"></script>
 </body>
 </html>

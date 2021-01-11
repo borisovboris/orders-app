@@ -26,8 +26,7 @@
 			<h1 class="lighter">Edit merchant</h1>
 	
 			<form action="<%= baseUrl %>/Merchants?edit=1" method="post" id="form">   
-			
-				<h3 class="lighter">ID</h3>        
+			       
 			    <input type="text" name="merchantId" 
 			    id="merchantId"
 			    value="<%= merchant.getId() %>"
@@ -61,7 +60,7 @@
 				
 				<%List<Country> countryList = (List<Country>)request.getAttribute("countryList"); %>
 				
-				<select name="merchantCountryCode" class="select-css">
+				<select name="merchantCountryCode" class="select-css" id="merchantCountryCode">
 				<%for (Country country : countryList) { %>
 					<%if(country.getCountryCode() == merchant.getCountryCode())  { %>
 						<option selected value="<%= country.getCountryCode()%>"><%= country.getCountryName() %></option>
@@ -90,6 +89,6 @@
 		</div>
 	</div>
 	
-	<script type="text/javascript" src="<%= baseUrl %>/scripts/validators/merchant.js"></script>
+	<script type="text/javascript" src="<%= baseUrl %>/scripts/validators/edit/merchant.js"></script>
 </body>
 </html>

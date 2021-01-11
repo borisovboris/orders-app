@@ -66,6 +66,6 @@
 		</div>
 	</div>
 	
-	<script type="text/javascript" src="<%= baseUrl %>/scripts/validators/order.js"></script>
+	<script type="text/javascript" src="<%= baseUrl %>/scripts/validators/edit/order.js"></script>
 </body>
 </html>

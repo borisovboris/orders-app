@@ -95,6 +95,6 @@
 		</div>
 	</div>
 	
-	<script type="text/javascript" src="<%= baseUrl %>/scripts/validators/product.js"></script>
+	<script type="text/javascript" src="<%= baseUrl %>/scripts/validators/edit/product.js"></script>
 </body>
 </html>

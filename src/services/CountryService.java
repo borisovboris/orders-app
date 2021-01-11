@@ -121,8 +121,7 @@ public class CountryService {
 			statement = connection.createStatement();
 			statement.executeUpdate(
 			"UPDATE country "
-			+ "SET country_code =" + countryCode +","
-			+ " country_name =" + "'" + countryName +"',"
+			+ "SET country_name =" + "'" + countryName +"',"
 			+ " continent_name =" + "'" + continentName +"' "
 			+ "WHERE "
 			+ "country_code = " + countryCode + ";"
